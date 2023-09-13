@@ -19,12 +19,8 @@ public class Reservation {
 	private long id;
 	
 	@OneToOne
-	@JoinColumn(name="user_id")
-	private GuestInformation user_id;
-	
-	@OneToOne
 	@JoinColumn(name="reserved_cabin_id")
-	private Reservation reserved_cabin_id;
+	private Cabin reserved_cabin_id;
 	
 	private Date check_in;
 	
