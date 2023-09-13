@@ -1,6 +1,7 @@
 package com.skillstorm.project2.models;
 
-import javax.persistence.Column;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,27 +11,23 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cabins")
-public class Cabin {
+@Table(name="reservations")
+public class Reservation {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name="cabin_name")
-	private String cabin_name;
-	
-	@Column(name="no_rooms")
-	private int no_rooms;
-	
-	@Column(name="no_bathrooms")
-	private int no_bathrooms;
-	
-	@Column(name="price")
-	private double price;
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private GuestInformation user_id;
 	
 	@OneToOne
-	@JoinColumn(name="amenities_id")
-	private Amenity amenities_id;
+	@JoinColumn(name="reserved_cabin_id")
+	private Reservation reserved_cabin_id;
+	
+	private Date check_in;
+	
+	private Date check_out;
 
 }

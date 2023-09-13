@@ -10,27 +10,27 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cabins")
-public class Cabin {
+@Table(name="guests")
+public class GuestInformation {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name="cabin_name")
-	private String cabin_name;
+	@Column(name="last_name")
+	private String last_name;
 	
-	@Column(name="no_rooms")
-	private int no_rooms;
+	@Column(name="first_name")
+	private String first_name;
 	
-	@Column(name="no_bathrooms")
-	private int no_bathrooms;
+	@Column(name="email")
+	private String email;
 	
-	@Column(name="price")
-	private double price;
+	@Column(name="phone")
+	private int phone;
 	
 	@OneToOne
-	@JoinColumn(name="amenities_id")
-	private Amenity amenities_id;
+	@JoinColumn(name="reservation_id")
+	private Reservation reservation_id;
 
 }
