@@ -23,6 +23,12 @@ public class GuestInformation {
 	@Column(name="first_name")
 	private String first_name;
 	
+	@Column(name="username")
+	private String username;
+	
+	@Column(name="password")
+	private String password;
+	
 	@Column(name="email")
 	private String email;
 	
@@ -34,9 +40,5 @@ public class GuestInformation {
 	
 	@Column(name="language")
 	private String language;
-	
-	@OneToOne
-	@JoinColumn(name="reservation_id")
-	private Reservation reservation_id;
 
 }

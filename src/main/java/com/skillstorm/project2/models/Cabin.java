@@ -26,11 +26,24 @@ public class Cabin {
 	@Column(name="no_bathrooms")
 	private int no_bathrooms;
 	
+	@Column(name="sleeps")
+	private int sleeps;
+	
 	@Column(name="price")
 	private double price;
+	
+	@Column(name="description")
+	private String description;
+	
+	@Column(name="capacity")
+	private int capacity;
 	
 	@OneToOne
 	@JoinColumn(name="amenities_id")
 	private Amenity amenities_id;
+	
+	@OneToOne
+	@JoinColumn(name="image_id")
+	private Image image_id;
 
 }
