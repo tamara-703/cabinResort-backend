@@ -29,6 +29,12 @@ public class GuestInformation {
 	@Column(name="phone")
 	private int phone;
 	
+	@Column(name="address")
+	private String address;
+	
+	@Column(name="language")
+	private String language;
+	
 	@OneToOne
 	@JoinColumn(name="reservation_id")
 	private Reservation reservation_id;
