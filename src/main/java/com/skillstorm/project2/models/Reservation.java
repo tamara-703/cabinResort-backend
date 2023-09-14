@@ -34,4 +34,55 @@ public class Reservation {
 	@JoinColumn(name="guest_id")
 	private GuestInformation guest_id;
 
+	public Reservation() {}
+
+	public Reservation(long id, Date check_in, Date check_out, Cabin reserved_cabin_id, GuestInformation guest_id) {
+		super();
+		this.id = id;
+		this.check_in = check_in;
+		this.check_out = check_out;
+		this.reserved_cabin_id = reserved_cabin_id;
+		this.guest_id = guest_id;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Date getCheck_in() {
+		return check_in;
+	}
+
+	public void setCheck_in(Date check_in) {
+		this.check_in = check_in;
+	}
+
+	public Date getCheck_out() {
+		return check_out;
+	}
+
+	public void setCheck_out(Date check_out) {
+		this.check_out = check_out;
+	}
+
+	public Cabin getReserved_cabin_id() {
+		return reserved_cabin_id;
+	}
+
+	public void setReserved_cabin_id(Cabin reserved_cabin_id) {
+		this.reserved_cabin_id = reserved_cabin_id;
+	}
+
+	public GuestInformation getGuest_id() {
+		return guest_id;
+	}
+
+	public void setGuest_id(GuestInformation guest_id) {
+		this.guest_id = guest_id;
+	}
+
 }
