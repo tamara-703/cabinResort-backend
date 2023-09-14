@@ -7,11 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,19 +31,20 @@ public class ReservationController {
 	}
 	
 	//get reservation by id
-	@GetMapping("/{id}")
-	public Reservation getReservationById(@RequestParam long id)
+	@GetMapping("/user/{rsvpId}")
+	public Reservation getReservationById(@PathVariable long rsvpId)
 	{
-		return rsvpService.getReservationById(id);
+		return rsvpService.getReservationById(rsvpId);
 	}
 	
 	
-	//get all reservations of a particular user
-	@GetMapping("/user/{userId}")
-	public Set<Reservation> getAllReservationByUser(@RequestParam long userId)
-	{
-		return rsvpService.getAllReservations(userId);
-	}
+	//change this to get the reservation based on the username
+//	//get all reservations of a particular user
+//	@GetMapping("/user/{userId}")
+//	public Set<Reservation> getAllReservationByUser(@PathVariable long userId)
+//	{
+//		return rsvpService.getAllReservations(userId);
+//	}
 	
 	//create a new reservation
 	@PostMapping
@@ -55,7 +56,7 @@ public class ReservationController {
 
 	//edit reservation by id
 	@PutMapping("/{id}")
-	public ResponseEntity<Reservation> editReservation(@RequestParam long id, @RequestBody Reservation reservation)
+	public ResponseEntity<Reservation> editReservation(@PathVariable long id, @RequestBody Reservation reservation)
 	{
 		boolean result = rsvpService.editReservation(reservation, id);
 		
@@ -71,10 +72,10 @@ public class ReservationController {
 	}
 	
 	//delete reservation by id
-	@DeleteMapping("/{id}")
-	public void deleteReservation(@RequestParam long id)
+	@DeleteMapping("/{rsvpId}")
+	public void deleteReservation(@PathVariable long rsvpId)
 	{
-		rsvpService.deleteReservation(id);
+		rsvpService.deleteReservation(rsvpId);
 	}
 	
 

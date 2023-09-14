@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.project2.models.GuestInformation;
@@ -36,16 +35,16 @@ public class UserController {
 	 * "returning dummy string"; }
 	 */
 		//get user profile
-		@GetMapping("/users/{userName}")
+		@GetMapping("/user/{userName}")
 		public GuestInformation getUserProfile(@PathVariable String userName)
 		{
-			logger.info("Entered get user profile info with username: "+userName);
+			logger.info("Entered get user profile info with username: "+ userName);
 			return usrService.findUserProfile(userName);
 		}
 		
 		
 		//edit user profile
-		@PutMapping("users/{userName}")
+		@PutMapping("/user/{userName}")
 		public ResponseEntity<GuestInformation> editUserProfile(@PathVariable String userName, @RequestBody GuestInformation gi)
 		{
 			boolean result = usrService.editUserProfile(gi, userName);
