@@ -32,7 +32,7 @@ public class UserService {
 		boolean result = false;
 		GuestInformation existingUser = usrRepo.findByUserName(userName);
 
-		if (existingUser.getUsername() == userName) {
+		if (existingUser.getUsername().equals(userName)) {
 			usrRepo.save(guestInfo);
 			result = true;
 		}

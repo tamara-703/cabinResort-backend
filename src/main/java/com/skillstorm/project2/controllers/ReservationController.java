@@ -39,12 +39,12 @@ public class ReservationController {
 	
 	
 	//change this to get the reservation based on the username
-//	//get all reservations of a particular user
-//	@GetMapping("/user/{userId}")
-//	public Set<Reservation> getAllReservationByUser(@PathVariable long userId)
-//	{
-//		return rsvpService.getAllReservations(userId);
-//	}
+	@GetMapping("/{userName}")
+	public Set<Reservation> getAllReservationsByUserName(@PathVariable String userName)
+	{
+		return rsvpService.getAllReservations(userName);
+	}
+
 	
 	//create a new reservation
 	@PostMapping
@@ -55,7 +55,7 @@ public class ReservationController {
 	}
 
 	//edit reservation by id
-	@PutMapping("/{id}")
+	@PutMapping("user/{id}")
 	public ResponseEntity<Reservation> editReservation(@PathVariable long id, @RequestBody Reservation reservation)
 	{
 		boolean result = rsvpService.editReservation(reservation, id);

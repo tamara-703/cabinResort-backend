@@ -25,10 +25,10 @@ public class ReservationService {
 		return rsvpRepo.findById(id).get();
 	}
 	
-	//get all reservations by user_id
-	public Set<Reservation> getAllReservations(long guestId)
+	//get all reservations by username
+	public Set<Reservation> getAllReservations(String userName)
 	{
-		return rsvpRepo.findByGuestId(guestId);
+		return rsvpRepo.findByUserName(userName);
 	}
 	
 	
