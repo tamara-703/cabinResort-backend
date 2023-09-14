@@ -18,7 +18,7 @@ public class Amenity {
 	private long id;
 	
 	@Column(name="pet_friendly")
-	private boolean pet_friendly;
+	private boolean petFriendly;
 	
 	@Column(name="patio")
 	private boolean patio;
@@ -33,10 +33,10 @@ public class Amenity {
 	private boolean jacuzzi;
 	
 	@Column(name="outdoor_hot_shower")
-	private boolean outdoor_hot_shower;
+	private boolean outdoorHotShower;
 	
 	@Column(name="outdoor_furniture")
-	private boolean outdoor_furniture;
+	private boolean outdoorFurniture;
 
 	public Amenity() {}
 
@@ -44,13 +44,13 @@ public class Amenity {
 			boolean outdoor_hot_shower, boolean outdoor_furniture) {
 		super();
 		this.id = id;
-		this.pet_friendly = pet_friendly;
+		this.petFriendly = pet_friendly;
 		this.patio = patio;
 		this.fireplace = fireplace;
 		this.kitchen = kitchen;
 		this.jacuzzi = jacuzzi;
-		this.outdoor_hot_shower = outdoor_hot_shower;
-		this.outdoor_furniture = outdoor_furniture;
+		this.outdoorHotShower = outdoor_hot_shower;
+		this.outdoorFurniture = outdoor_furniture;
 	}
 
 	public long getId() {
@@ -62,11 +62,11 @@ public class Amenity {
 	}
 
 	public boolean isPet_friendly() {
-		return pet_friendly;
+		return petFriendly;
 	}
 
 	public void setPet_friendly(boolean pet_friendly) {
-		this.pet_friendly = pet_friendly;
+		this.petFriendly = pet_friendly;
 	}
 
 	public boolean isPatio() {
@@ -102,19 +102,19 @@ public class Amenity {
 	}
 
 	public boolean isOutdoor_hot_shower() {
-		return outdoor_hot_shower;
+		return outdoorHotShower;
 	}
 
 	public void setOutdoor_hot_shower(boolean outdoor_hot_shower) {
-		this.outdoor_hot_shower = outdoor_hot_shower;
+		this.outdoorHotShower = outdoor_hot_shower;
 	}
 
 	public boolean isOutdoor_furniture() {
-		return outdoor_furniture;
+		return outdoorFurniture;
 	}
 
 	public void setOutdoor_furniture(boolean outdoor_furniture) {
-		this.outdoor_furniture = outdoor_furniture;
+		this.outdoorFurniture = outdoor_furniture;
 	}
 
 }

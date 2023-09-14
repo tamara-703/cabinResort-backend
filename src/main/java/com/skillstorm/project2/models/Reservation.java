@@ -20,29 +20,29 @@ public class Reservation {
 	private long id;
 
 	@Column(name="check_in")
-	private Date check_in;
+	private Date checkIn;
 	
 	@Column(name="check_out")
-	private Date check_out;
+	private Date checkOut;
 	
 	
 	@OneToOne
 	@JoinColumn(name="reserved_cabin_id")
-	private Cabin reserved_cabin_id;
+	private Cabin reservedCabinId;
 	
 	@OneToOne
 	@JoinColumn(name="guest_id")
-	private GuestInformation guest_id;
+	private GuestInformation guestId;
 
 	public Reservation() {}
 
 	public Reservation(long id, Date check_in, Date check_out, Cabin reserved_cabin_id, GuestInformation guest_id) {
 		super();
 		this.id = id;
-		this.check_in = check_in;
-		this.check_out = check_out;
-		this.reserved_cabin_id = reserved_cabin_id;
-		this.guest_id = guest_id;
+		this.checkIn = check_in;
+		this.checkOut = check_out;
+		this.reservedCabinId = reserved_cabin_id;
+		this.guestId = guest_id;
 	}
 
 	public long getId() {
@@ -54,35 +54,35 @@ public class Reservation {
 	}
 
 	public Date getCheck_in() {
-		return check_in;
+		return checkIn;
 	}
 
 	public void setCheck_in(Date check_in) {
-		this.check_in = check_in;
+		this.checkIn = check_in;
 	}
 
 	public Date getCheck_out() {
-		return check_out;
+		return checkOut;
 	}
 
 	public void setCheck_out(Date check_out) {
-		this.check_out = check_out;
+		this.checkOut = check_out;
 	}
 
 	public Cabin getReserved_cabin_id() {
-		return reserved_cabin_id;
+		return reservedCabinId;
 	}
 
 	public void setReserved_cabin_id(Cabin reserved_cabin_id) {
-		this.reserved_cabin_id = reserved_cabin_id;
+		this.reservedCabinId = reserved_cabin_id;
 	}
 
 	public GuestInformation getGuest_id() {
-		return guest_id;
+		return guestId;
 	}
 
 	public void setGuest_id(GuestInformation guest_id) {
-		this.guest_id = guest_id;
+		this.guestId = guest_id;
 	}
 
 }

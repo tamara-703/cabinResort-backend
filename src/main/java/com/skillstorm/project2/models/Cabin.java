@@ -18,13 +18,13 @@ public class Cabin {
 	private long id;
 	
 	@Column(name="cabin_name")
-	private String cabin_name;
+	private String cabinName;
 	
 	@Column(name="no_rooms")
-	private int no_rooms;
+	private int noRooms;
 	
 	@Column(name="no_bathrooms")
-	private int no_bathrooms;
+	private int noBathrooms;
 	
 	@Column(name="sleeps")
 	private int sleeps;
@@ -40,11 +40,11 @@ public class Cabin {
 	
 	@OneToOne
 	@JoinColumn(name="amenities_id")
-	private Amenity amenities_id;
+	private Amenity amenitiesId;
 	
 	@OneToOne
 	@JoinColumn(name="image_id")
-	private Image image_id;
+	private Image imageId;
 
 	public Cabin() {}
 
@@ -52,15 +52,15 @@ public class Cabin {
 			String description, int capacity, Amenity amenities_id, Image image_id) {
 		super();
 		this.id = id;
-		this.cabin_name = cabin_name;
-		this.no_rooms = no_rooms;
-		this.no_bathrooms = no_bathrooms;
+		this.cabinName = cabin_name;
+		this.noRooms = no_rooms;
+		this.noBathrooms = no_bathrooms;
 		this.sleeps = sleeps;
 		this.price = price;
 		this.description = description;
 		this.capacity = capacity;
-		this.amenities_id = amenities_id;
-		this.image_id = image_id;
+		this.amenitiesId = amenities_id;
+		this.imageId = image_id;
 	}
 
 	public long getId() {
@@ -72,27 +72,27 @@ public class Cabin {
 	}
 
 	public String getCabin_name() {
-		return cabin_name;
+		return cabinName;
 	}
 
 	public void setCabin_name(String cabin_name) {
-		this.cabin_name = cabin_name;
+		this.cabinName = cabin_name;
 	}
 
 	public int getNo_rooms() {
-		return no_rooms;
+		return noRooms;
 	}
 
 	public void setNo_rooms(int no_rooms) {
-		this.no_rooms = no_rooms;
+		this.noRooms = no_rooms;
 	}
 
 	public int getNo_bathrooms() {
-		return no_bathrooms;
+		return noBathrooms;
 	}
 
 	public void setNo_bathrooms(int no_bathrooms) {
-		this.no_bathrooms = no_bathrooms;
+		this.noBathrooms = no_bathrooms;
 	}
 
 	public int getSleeps() {
@@ -128,19 +128,19 @@ public class Cabin {
 	}
 
 	public Amenity getAmenities_id() {
-		return amenities_id;
+		return amenitiesId;
 	}
 
 	public void setAmenities_id(Amenity amenities_id) {
-		this.amenities_id = amenities_id;
+		this.amenitiesId = amenities_id;
 	}
 
 	public Image getImage_id() {
-		return image_id;
+		return imageId;
 	}
 
 	public void setImage_id(Image image_id) {
-		this.image_id = image_id;
+		this.imageId = image_id;
 	}
 
 }
