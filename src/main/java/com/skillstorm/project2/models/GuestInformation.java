@@ -129,4 +129,11 @@ public class GuestInformation {
 		this.language = language;
 	}
 
+	@Override
+	public String toString() {
+		return "GuestInformation [id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", username="
+				+ username + ", password=" + password + ", email=" + email + ", phone=" + phone + ", address=" + address
+				+ ", language=" + language + "]";
+	}
+
 }
