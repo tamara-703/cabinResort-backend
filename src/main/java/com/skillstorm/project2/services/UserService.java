@@ -38,19 +38,36 @@ public class UserService implements UserDetailsService {
 		return gi;
 	}
 
-	public void editUserProfile(GuestInformation guestInfo) {
-		//boolean result = false;
-//		GuestInformation existingUser = usrRepo.findByUserName(userName);
+	public boolean editUserProfile(GuestInformation guestInfo, String username) {
+		boolean result = false;
+		GuestInformation existingUser = usrRepo.findByUserName(username);
 
-//		if (existingUser.getUsername().equals(userName)) {
-//			usrRepo.save(guestInfo);
-//			result = true;
-//		}
+		if (existingUser.getUsername().equals(username)) {
+			guestInfo.setPassword(passwordEncoder.encode(guestInfo.getPassword()));
+			guestInfo.setRole("ROLE_USER");
+			usrRepo.save(guestInfo);
+			result = true;
+		}
 
-		//return result;
-		
-		usrRepo.save(guestInfo);
+		return result;
+
 	}
+	
+	//FIX
+	public void editById(GuestInformation guestInfo, long id) {
+
+		GuestInformation existingUser = usrRepo.findById(id).get();
+
+		if (existingUser != null && existingUser.getId() == id) {
+			guestInfo.setPassword(passwordEncoder.encode(guestInfo.getPassword()));
+			guestInfo.setRole("ROLE_USER");
+			usrRepo.save(guestInfo);
+		}
+
+	}
+	
+	
+	
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -29,7 +29,11 @@ public class SecurityConfigurations {
 		
 		http.csrf((csrf) -> {
 			csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-			.ignoringAntMatchers("/homepage/signup", "user/profile/");
+			.ignoringAntMatchers("/homepage/signup");
+		});
+		
+		http.csrf((csrf) -> {
+			csrf.ignoringAntMatchers("/user/profile/{id}");
 		});
 		
 		return http.build();

@@ -84,14 +84,14 @@ public class UserController {
 //			
 //			
 //		}
-//		
+		
 		
 		//edit user profile
-		@PutMapping("/profile")
+		@PutMapping("/profile/{id}")
 		@ResponseStatus(code = HttpStatus.CREATED)
-		public void editUserProfile(@RequestBody GuestInformation gi)
+		public void editUserProfile(@RequestBody GuestInformation gi, @PathVariable long id)
 		{
-			usrService.editUserProfile(gi);
+			usrService.editById(gi,id);
 
 		}
 }
