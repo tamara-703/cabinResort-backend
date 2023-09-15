@@ -59,6 +59,7 @@ public class UserService implements UserDetailsService {
 		GuestInformation existingUser = usrRepo.findById(id).get();
 
 		if (existingUser != null && existingUser.getId() == id) {
+			guestInfo.setId(id);
 			guestInfo.setPassword(passwordEncoder.encode(guestInfo.getPassword()));
 			guestInfo.setRole("ROLE_USER");
 			usrRepo.save(guestInfo);
