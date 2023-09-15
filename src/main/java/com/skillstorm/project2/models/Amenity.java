@@ -17,6 +17,7 @@ public class Amenity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	//@NotBlank
 	@Column(name="pet_friendly")
 	private boolean petFriendly;
 	

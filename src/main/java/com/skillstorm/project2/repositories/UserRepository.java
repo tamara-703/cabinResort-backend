@@ -13,13 +13,12 @@ import com.skillstorm.project2.models.GuestInformation;
 public interface UserRepository extends JpaRepository<GuestInformation,Long>{
 	
 	//custom methods (if any)
-	//public GuestInformation findByUserName(String username);
 	
-	@Query("SELECT gi FROM GuestInformation gi WHERE gi.username = :userName")
-	public GuestInformation findByUserName(@Param("userName")String userName);
+	@Query("SELECT gi FROM GuestInformation gi WHERE gi.username = :username")
+	public GuestInformation findByUsername(@Param("username")String username);
 	
 	//for user login
-	public Optional<GuestInformation> findByUsername(String username);
+//	public Optional<GuestInformation> findByUsername(String username);
 	
 	//verify if user exists in database
 	public boolean existsByUsername(String username);

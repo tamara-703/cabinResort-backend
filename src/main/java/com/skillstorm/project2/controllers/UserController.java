@@ -87,11 +87,19 @@ public class UserController {
 //		
 		
 		//edit user profile
-		@PutMapping("/profile")
-		@ResponseStatus(code = HttpStatus.CREATED)
-		public void editUserProfile(@RequestBody GuestInformation gi)
+		@PutMapping("/profile/{userName}")
+		public ResponseEntity<GuestInformation> editUserProfile(@RequestBody GuestInformation gi, @PathVariable String userName)
 		{
-			usrService.editUserProfile(gi);
+			boolean status = usrService.editUserProfile(gi, userName);
+			
+			if(status)
+			{
+				return new ResponseEntity<>(HttpStatus.ACCEPTED);
+			}
+			else {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
 
 		}
+
 }

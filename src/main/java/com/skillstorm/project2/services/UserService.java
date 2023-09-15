@@ -32,31 +32,36 @@ public class UserService implements UserDetailsService {
 
 		logger.info(userName);
 		
-		GuestInformation gi = usrRepo.findByUserName(userName);
+		GuestInformation gi = usrRepo.findByUsername(userName);
 
 		logger.info("guest info: "+gi);
 		return gi;
 	}
 
-	public void editUserProfile(GuestInformation guestInfo) {
-		//boolean result = false;
-//		GuestInformation existingUser = usrRepo.findByUserName(userName);
+	public boolean editUserProfile(GuestInformation guestInfo, String userName) {
+		boolean result = false;
+		GuestInformation existingUser = usrRepo.findByUsername(userName);
 
-//		if (existingUser.getUsername().equals(userName)) {
-//			usrRepo.save(guestInfo);
-//			result = true;
-//		}
+		if (existingUser.getUsername().equals(userName)) {
+			guestInfo.setPassword(passwordEncoder.encode(guestInfo.getPassword()));
+			guestInfo.setRole("ROLE_USER");
+			usrRepo.save(guestInfo);
+			result = true;
+		}
 
-		//return result;
+		return result;
 		
-		usrRepo.save(guestInfo);
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		GuestInformation user = usrRepo.findByUsername(username)
-				.orElseThrow(() -> new UsernameNotFoundException("Username " + username + " does not exist."));
+		GuestInformation user = usrRepo.findByUsername(username);
+		
+		if(user == null)
+		{
+			new UsernameNotFoundException("Username " + username + " does not exist.");
+		}
 
 		return user;
 	}
@@ -79,9 +84,9 @@ public class UserService implements UserDetailsService {
 		
 	}
 	
-	public Optional<GuestInformation> getRegisteredUser(long id)
-	{
-		return usrRepo.findById(id);
-	}
+//	public Optional<GuestInformation> getRegisteredUser(long id)
+//	{
+//		return usrRepo.findById(id);
+//	}
 
 }
