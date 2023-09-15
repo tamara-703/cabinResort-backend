@@ -1,21 +1,31 @@
 package com.skillstorm.project2.services;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.skillstorm.project2.exceptions.UserAlreadyExistsException;
 import com.skillstorm.project2.models.GuestInformation;
 import com.skillstorm.project2.repositories.UserRepository;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
 	private UserRepository usrRepo;
+	private PasswordEncoder passwordEncoder;
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
-	public UserService(UserRepository usrRepo) {
-		super();
+	@Autowired
+	public UserService(UserRepository usrRepo, PasswordEncoder passwordEncoder) {
 		this.usrRepo = usrRepo;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	public GuestInformation findUserProfile(String userName) {
@@ -28,16 +38,50 @@ public class UserService {
 		return gi;
 	}
 
-	public boolean editUserProfile(GuestInformation guestInfo, String userName) {
-		boolean result = false;
-		GuestInformation existingUser = usrRepo.findByUserName(userName);
+	public void editUserProfile(GuestInformation guestInfo) {
+		//boolean result = false;
+//		GuestInformation existingUser = usrRepo.findByUserName(userName);
 
-		if (existingUser.getUsername().equals(userName)) {
-			usrRepo.save(guestInfo);
-			result = true;
+//		if (existingUser.getUsername().equals(userName)) {
+//			usrRepo.save(guestInfo);
+//			result = true;
+//		}
+
+		//return result;
+		
+		usrRepo.save(guestInfo);
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		
+		GuestInformation user = usrRepo.findByUsername(username)
+				.orElseThrow(() -> new UsernameNotFoundException("Username " + username + " does not exist."));
+
+		return user;
+	}
+	
+	//user signup
+	public void registerUser(GuestInformation guestInfo) throws UserAlreadyExistsException
+	{
+		String existingUser = guestInfo.getUsername();
+		boolean isUserExists = usrRepo.existsByUsername(existingUser);
+		
+		if(isUserExists)
+		{
+			throw new UserAlreadyExistsException("Username " + existingUser + " already exists.");
 		}
-
-		return result;
+		
+		guestInfo.setPassword(passwordEncoder.encode(guestInfo.getPassword()));
+		guestInfo.setRole("ROLE_USER");
+		
+		usrRepo.save(guestInfo);
+		
+	}
+	
+	public Optional<GuestInformation> getRegisteredUser(long id)
+	{
+		return usrRepo.findById(id);
 	}
 
 }

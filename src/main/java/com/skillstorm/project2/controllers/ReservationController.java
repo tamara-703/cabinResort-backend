@@ -18,8 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skillstorm.project2.models.Reservation;
 import com.skillstorm.project2.services.ReservationService;
 
+/* 
+ * USER'S RESERVATIONS
+ * This Controller can only be accessed when a user is logged into their account
+ * */
+
 @RestController
-@RequestMapping("/reservations")
+@RequestMapping("/user/reservations")
 public class ReservationController {
 	
 	private ReservationService rsvpService;
@@ -31,7 +36,7 @@ public class ReservationController {
 	}
 	
 	//get reservation by id
-	@GetMapping("/user/{rsvpId}")
+	@GetMapping("/reservation/{rsvpId}")
 	public Reservation getReservationById(@PathVariable long rsvpId)
 	{
 		return rsvpService.getReservationById(rsvpId);
@@ -55,7 +60,7 @@ public class ReservationController {
 	}
 
 	//edit reservation by id
-	@PutMapping("user/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Reservation> editReservation(@PathVariable long id, @RequestBody Reservation reservation)
 	{
 		boolean result = rsvpService.editReservation(reservation, id);

@@ -1,5 +1,7 @@
 package com.skillstorm.project2.repositories;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,5 +17,11 @@ public interface UserRepository extends JpaRepository<GuestInformation,Long>{
 	
 	@Query("SELECT gi FROM GuestInformation gi WHERE gi.username = :userName")
 	public GuestInformation findByUserName(@Param("userName")String userName);
+	
+	//for user login
+	public Optional<GuestInformation> findByUsername(String username);
+	
+	//verify if user exists in database
+	public boolean existsByUsername(String username);
 	
 }

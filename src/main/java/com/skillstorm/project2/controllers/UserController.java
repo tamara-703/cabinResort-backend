@@ -1,29 +1,42 @@
 package com.skillstorm.project2.controllers;
 
+import java.security.Principal;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.project2.models.GuestInformation;
 import com.skillstorm.project2.services.UserService;
 
+/* 
+ * USER'S PROFILE
+ * This Controller will only be accessed when a user is logged into their account
+ * 
+ */
+
 @RestController
-@RequestMapping("/profile")
+@RequestMapping("/user")
 public class UserController {
 
 	private UserService usrService;
 	
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
-		public UserController(UserService usrService) {
-		super();
+	@Autowired
+	public UserController(UserService usrService) {
 		this.usrService = usrService;
 	}
 
@@ -35,28 +48,50 @@ public class UserController {
 	 * "returning dummy string"; }
 	 */
 		//get user profile
-		@GetMapping("/user/{userName}")
-		public GuestInformation getUserProfile(@PathVariable String userName)
+//		@GetMapping("/{userName}")
+//		public GuestInformation getUserProfile(@PathVariable String userName)
+//		{
+//			logger.info("Entered get user profile info with username: "+ userName);
+//			return usrService.findUserProfile(userName);
+//		}
+
+		@GetMapping
+		public Principal getPrincipal(Principal principal)
 		{
-			logger.info("Entered get user profile info with username: "+ userName);
-			return usrService.findUserProfile(userName);
+			return principal;
+		}
+
+		
+		@GetMapping("/profile")
+		public GuestInformation getUser(@AuthenticationPrincipal GuestInformation user)
+		{
+			return user;
 		}
 		
+//		//edit user profile
+//		@PutMapping("/profile/{userName}")
+//		public ResponseEntity<GuestInformation> editUserProfile(@PathVariable String userName, @RequestBody GuestInformation gi)
+//		{
+//			boolean result = usrService.editUserProfile(gi, userName);
+//			
+//			if(result == true)
+//			{
+//				return new ResponseEntity<>(HttpStatus.ACCEPTED);
+//			}
+//			else {
+//				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//			}
+//			
+//			
+//		}
+//		
 		
 		//edit user profile
-		@PutMapping("/user/{userName}")
-		public ResponseEntity<GuestInformation> editUserProfile(@PathVariable String userName, @RequestBody GuestInformation gi)
+		@PutMapping("/profile")
+		@ResponseStatus(code = HttpStatus.CREATED)
+		public void editUserProfile(@RequestBody GuestInformation gi)
 		{
-			boolean result = usrService.editUserProfile(gi, userName);
-			
-			if(result == true)
-			{
-				return new ResponseEntity<>(HttpStatus.ACCEPTED);
-			}
-			else {
-				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			}
-			
-			
+			usrService.editUserProfile(gi);
+
 		}
 }

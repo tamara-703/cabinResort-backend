@@ -1,5 +1,9 @@
 package com.skillstorm.project2.models;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
 @Table(name="guests")
-public class GuestInformation {
+public class GuestInformation implements UserDetails {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,11 +48,14 @@ public class GuestInformation {
 	
 	@Column(name="language")
 	private String language;
+	
+	@Column(name="role")
+	private String role;
 
 	public GuestInformation() {}
 
 	public GuestInformation(long id, String last_name, String first_name, String username, String password,
-			String email, int phone, String address, String language) {
+			String email, int phone, String address, String language, String role) {
 		super();
 		this.id = id;
 		this.lastName = last_name;
@@ -55,6 +66,7 @@ public class GuestInformation {
 		this.phone = phone;
 		this.address = address;
 		this.language = language;
+		this.role = role;
 	}
 
 	public long getId() {
@@ -128,12 +140,59 @@ public class GuestInformation {
 	public void setLanguage(String language) {
 		this.language = language;
 	}
+	
+	public String getRole()
+	{
+		return role;
+	}
+	
+	public void setRole(String role)
+	{
+		this.role = role;
+	}
 
 	@Override
 	public String toString() {
 		return "GuestInformation [id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", username="
 				+ username + ", password=" + password + ", email=" + email + ", phone=" + phone + ", address=" + address
-				+ ", language=" + language + "]";
+				+ ", language=" + language + ", role=" + role + "]";
 	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		
+		Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+		
+		SimpleGrantedAuthority userRole = new SimpleGrantedAuthority(role);
+		authorities.add(userRole);
+		
+		return authorities;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+
+		return true;
+	}
+
+	
 
 }
