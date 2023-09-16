@@ -1,0 +1,60 @@
+# Pipeline name
+name: Spring Build Pipeline
+run-name: Spring Build Pipeline
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch 
+    # (to make it run on other branches, we specify the names of those branches)
+  push:
+    branches: [ "main", "tsaadeh", "duo" ]
+  pull_request:
+    branches: ["main", "tsaadeh", "duo" ]
+
+  # Allows to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or parallel
+jobs: # These jobs are running on seperate VMs
+  # This job contains a single workflow called "build"
+  build:
+    # The type of runner the job will run on
+    runs-on: ubuntu-latest # latest means latest version of the instance type. We can also specify another version
+
+    # Steps represents a sequence of tasks that will be executed as part of the job
+    steps:
+    # checks out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout
+        uses: actions/checkout@v4.0.0
+
+      - name: AWS login
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+           # AWS Access Key ID. Provide this key if you want to assume a role using access keys rather than a web identity token.
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          # AWS Secret Access Key. Required if aws-access-key-id is provided.
+          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: JDK installation
+        uses: actions/setup-java@v3.12.0
+        # actions/setup-java@1
+        with:
+            distribution: "temurin" # changes depending on the java version we're using
+            java-version: "8"
+
+      - name: Build project in maven
+        run: mvn -b package --file https://github.com/tamara-703/cabinResort-backend/blob/main/pom.xml
+
+      - name: list files
+        run: ls -la spring/githubprojectname/target
+
+      - name: deploy
+        working-directory: {githubpom.xmllinkfor project}
+        run: aws s3 cp * s3:://anything/
+      
+    
+    
+    
+  
+  
