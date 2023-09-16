@@ -53,6 +53,14 @@ public class UserController {
 	{
 		return user;
 	}
+	
+	//get user profile after update
+	@GetMapping("/profile/{userId}")
+	public GuestInformation getUserById(@PathVariable long userId)
+	{
+		return usrService.findByUserId(userId);
+	}
+	
 
 	//edit user profile
 	@PutMapping("/profile/{id}")

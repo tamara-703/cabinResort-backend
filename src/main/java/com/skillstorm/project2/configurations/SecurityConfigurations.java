@@ -33,14 +33,10 @@ public class SecurityConfigurations {
 			.ignoringAntMatchers("/homepage/signup");
 		});
 		
-<<<<<<< HEAD
-		http.csrf((csrf) -> {
-			csrf.ignoringAntMatchers("/user/profile/{username}");
-=======
+
 		//enabling users to edit their profile by ignoring any unsafe PUT requests to the specified path
 		http.csrf((csrf) -> {
 			csrf.ignoringAntMatchers("/user/profile/{id}");
->>>>>>> 29acb325bcd6ebe850274ca3c4959055b0df982a
 		});
 		
 		return http.build();

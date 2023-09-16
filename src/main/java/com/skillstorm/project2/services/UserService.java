@@ -81,8 +81,14 @@ public class UserService implements UserDetailsService {
 		
 	}
 	
+	public GuestInformation findByUserId(long id)
+	{
+		return usrRepo.findById(id).get();
+	}
+	
 	public Optional<GuestInformation> getRegisteredUser(long id)
 	{
+		logger.info("GETTING REGISTERED USER");
 		return usrRepo.findById(id);
 	}
 
