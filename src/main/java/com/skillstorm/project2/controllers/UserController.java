@@ -54,49 +54,6 @@ public class UserController {
 		return user;
 	}
 
-<<<<<<< HEAD
-		
-		@GetMapping("/profile")
-		public GuestInformation getUser(@AuthenticationPrincipal GuestInformation user)
-		{
-			return user;
-		}
-		
-//		//edit user profile
-//		@PutMapping("/profile/{userName}")
-//		public ResponseEntity<GuestInformation> editUserProfile(@PathVariable String userName, @RequestBody GuestInformation gi)
-//		{
-//			boolean result = usrService.editUserProfile(gi, userName);
-//			
-//			if(result == true)
-//			{
-//				return new ResponseEntity<>(HttpStatus.ACCEPTED);
-//			}
-//			else {
-//				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//			}
-//			
-//			
-//		}
-//		
-		
-		//edit user profile
-		@PutMapping("/profile/{userName}")
-		public ResponseEntity<GuestInformation> editUserProfile(@RequestBody GuestInformation gi, @PathVariable String userName)
-		{
-			boolean status = usrService.editUserProfile(gi, userName);
-			
-			if(status)
-			{
-				return new ResponseEntity<>(HttpStatus.ACCEPTED);
-			}
-			else {
-				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			}
-
-		}
-
-=======
 	//edit user profile
 	@PutMapping("/profile/{id}")
 	@ResponseStatus(code = HttpStatus.CREATED)
@@ -105,5 +62,4 @@ public class UserController {
 		usrService.editById(gi,id);
 
 	}
->>>>>>> 29acb325bcd6ebe850274ca3c4959055b0df982a
 }

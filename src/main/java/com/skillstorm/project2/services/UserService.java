@@ -32,7 +32,7 @@ public class UserService implements UserDetailsService {
 
 		logger.info(userName);
 		
-		GuestInformation gi = usrRepo.findByUsername(userName);
+		GuestInformation gi = usrRepo.findByUserName(userName);
 
 		logger.info("guest info: "+gi);
 		return gi;
@@ -53,7 +53,7 @@ public class UserService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		GuestInformation user = usrRepo.findByUsername(username);
+		GuestInformation user = usrRepo.findByUserName(username);
 		
 		if(user == null)
 		{
