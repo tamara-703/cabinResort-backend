@@ -43,7 +43,7 @@ public class ReservationController {
 	}
 	
 	
-	//change this to get the reservation based on the username
+	//get all reservations made by a single user
 	@GetMapping("/{userName}")
 	public Set<Reservation> getAllReservationsByUserName(@PathVariable String userName)
 	{
@@ -76,7 +76,7 @@ public class ReservationController {
 		
 	}
 	
-	//delete reservation by id
+	//delete reservation by its id
 	@DeleteMapping("/{rsvpId}")
 	public void deleteReservation(@PathVariable long rsvpId)
 	{

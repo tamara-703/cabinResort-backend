@@ -9,13 +9,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+
+/*
+ * TODO : Add @NotBlank annotation to all columns except Id (since all columns will be required)
+ */
 
 @Entity
 @Table(name="guests")
@@ -25,37 +28,37 @@ public class GuestInformation implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name="last_name")
+	@Column(name="last_name", length=255)
 	private String lastName;
 	
-	@Column(name="first_name")
+	@Column(name="first_name", length=255)
 	private String firstName;
 	
-	@Column(name="username")
+	@Column(name="username", length=255)
 	private String username;
 	
 	@Column(name="password")
 	private String password;
 	
-	@Column(name="email")
+	@Column(name="email", length=255)
 	private String email;
 	
-	@Column(name="phone")
-	private int phone;
+	@Column(name="phone", length=255)
+	private String phone;
 	
-	@Column(name="address")
+	@Column(name="address", length=255)
 	private String address;
 	
-	@Column(name="language")
+	@Column(name="language", length=255)
 	private String language;
 	
-	@Column(name="role")
+	@Column(name="role", length=255)
 	private String role;
 
 	public GuestInformation() {}
 
 	public GuestInformation(long id, String last_name, String first_name, String username, String password,
-			String email, int phone, String address, String language, String role) {
+			String email, String phone, String address, String language, String role) {
 		super();
 		this.id = id;
 		this.lastName = last_name;
@@ -117,11 +120,11 @@ public class GuestInformation implements UserDetails {
 		this.email = email;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
