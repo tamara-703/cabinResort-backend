@@ -38,21 +38,6 @@ public class UserService implements UserDetailsService {
 		return gi;
 	}
 
-<<<<<<< HEAD
-	public boolean editUserProfile(GuestInformation guestInfo, String userName) {
-		boolean result = false;
-		GuestInformation existingUser = usrRepo.findByUsername(userName);
-
-		if (existingUser.getUsername().equals(userName)) {
-			guestInfo.setPassword(passwordEncoder.encode(guestInfo.getPassword()));
-			guestInfo.setRole("ROLE_USER");
-			usrRepo.save(guestInfo);
-			result = true;
-		}
-
-		return result;
-		
-=======
 	public void editById(GuestInformation guestInfo, long id) {
 
 		GuestInformation existingUser = usrRepo.findById(id).get();
@@ -63,8 +48,6 @@ public class UserService implements UserDetailsService {
 			guestInfo.setRole("ROLE_USER");
 			usrRepo.save(guestInfo);
 		}
-
->>>>>>> 29acb325bcd6ebe850274ca3c4959055b0df982a
 	}
 
 	@Override
@@ -98,9 +81,9 @@ public class UserService implements UserDetailsService {
 		
 	}
 	
-//	public Optional<GuestInformation> getRegisteredUser(long id)
-//	{
-//		return usrRepo.findById(id);
-//	}
+	public Optional<GuestInformation> getRegisteredUser(long id)
+	{
+		return usrRepo.findById(id);
+	}
 
 }
