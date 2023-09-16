@@ -40,58 +40,26 @@ public class UserController {
 		this.usrService = usrService;
 	}
 
-	/*
-	 * //get user profile
-	 * 
-	 * @GetMapping("/users") public String getUsers() {
-	 * //logger.info("Entered get user profile info with username: "); return
-	 * "returning dummy string"; }
-	 */
-		//get user profile
-//		@GetMapping("/{userName}")
-//		public GuestInformation getUserProfile(@PathVariable String userName)
-//		{
-//			logger.info("Entered get user profile info with username: "+ userName);
-//			return usrService.findUserProfile(userName);
-//		}
+	//get the Principal (all metadata of the user object)
+	@GetMapping
+	public Principal getPrincipal(Principal principal)
+	{
+		return principal;
+	}
 
-		@GetMapping
-		public Principal getPrincipal(Principal principal)
-		{
-			return principal;
-		}
+	//get the user object (i.e only the user's information)
+	@GetMapping("/profile")
+	public GuestInformation getUser(@AuthenticationPrincipal GuestInformation user)
+	{
+		return user;
+	}
 
-		
-		@GetMapping("/profile")
-		public GuestInformation getUser(@AuthenticationPrincipal GuestInformation user)
-		{
-			return user;
-		}
-		
-//		//edit user profile
-//		@PutMapping("/profile/{userName}")
-//		public ResponseEntity<GuestInformation> editUserProfile(@PathVariable String userName, @RequestBody GuestInformation gi)
-//		{
-//			boolean result = usrService.editUserProfile(gi, userName);
-//			
-//			if(result == true)
-//			{
-//				return new ResponseEntity<>(HttpStatus.ACCEPTED);
-//			}
-//			else {
-//				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//			}
-//			
-//			
-//		}
-		
-		
-		//edit user profile
-		@PutMapping("/profile/{id}")
-		@ResponseStatus(code = HttpStatus.CREATED)
-		public void editUserProfile(@RequestBody GuestInformation gi, @PathVariable long id)
-		{
-			usrService.editById(gi,id);
+	//edit user profile
+	@PutMapping("/profile/{id}")
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public void editUserProfile(@RequestBody GuestInformation gi, @PathVariable long id)
+	{
+		usrService.editById(gi,id);
 
-		}
+	}
 }

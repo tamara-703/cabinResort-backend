@@ -38,22 +38,6 @@ public class UserService implements UserDetailsService {
 		return gi;
 	}
 
-	public boolean editUserProfile(GuestInformation guestInfo, String username) {
-		boolean result = false;
-		GuestInformation existingUser = usrRepo.findByUserName(username);
-
-		if (existingUser.getUsername().equals(username)) {
-			guestInfo.setPassword(passwordEncoder.encode(guestInfo.getPassword()));
-			guestInfo.setRole("ROLE_USER");
-			usrRepo.save(guestInfo);
-			result = true;
-		}
-
-		return result;
-
-	}
-	
-	//FIX
 	public void editById(GuestInformation guestInfo, long id) {
 
 		GuestInformation existingUser = usrRepo.findById(id).get();
@@ -66,9 +50,6 @@ public class UserService implements UserDetailsService {
 		}
 
 	}
-	
-	
-	
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

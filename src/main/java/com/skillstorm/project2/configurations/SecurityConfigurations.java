@@ -27,11 +27,13 @@ public class SecurityConfigurations {
 			.mvcMatchers("/user/**").hasAuthority("ROLE_USER");
 		}).httpBasic();
 		
+		//enabling users to signup by ignoring any unsafe POST requests to the specified path
 		http.csrf((csrf) -> {
 			csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 			.ignoringAntMatchers("/homepage/signup");
 		});
 		
+		//enabling users to edit their profile by ignoring any unsafe PUT requests to the specified path
 		http.csrf((csrf) -> {
 			csrf.ignoringAntMatchers("/user/profile/{id}");
 		});

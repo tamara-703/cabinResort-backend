@@ -25,15 +25,13 @@ import com.skillstorm.project2.services.UserService;
 
 @RestController
 @RequestMapping("/homepage")
-public class AuthenticationController {
-	
-	//on homepage front page, display a UI of available cabins
+public class HomepageController {
 	
 	private CabinService cabinService;
 	private UserService userService;
 	
 	@Autowired
-	public AuthenticationController(CabinService cabinService, UserService userService)
+	public HomepageController(CabinService cabinService, UserService userService)
 	{
 		this.cabinService = cabinService;
 		this.userService = userService;
@@ -53,6 +51,7 @@ public class AuthenticationController {
 		return cabinService.getCabinById(id);
 	}
 	
+	//user signup
 	@PostMapping("/signup")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public void registerUser(@RequestBody GuestInformation newUser) throws UserAlreadyExistsException
