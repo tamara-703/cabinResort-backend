@@ -2,12 +2,17 @@ package com.skillstorm.project2.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="cabins")
@@ -45,11 +50,18 @@ public class Cabin {
 	@OneToOne
 	@JoinColumn(name="image_id")
 	private Image imageId;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="stateid", nullable=false)
+	@JsonIgnore
+	@JsonBackReference
+	private CabinLocations cabinloc;
+	
 
 	public Cabin() {}
 
 	public Cabin(long id, String cabin_name, int no_rooms, int no_bathrooms, int sleeps, double price,
-			String description, int capacity, Amenity amenities_id, Image image_id) {
+			String description, int capacity, Amenity amenities_id, Image image_id, CabinLocations cabinloc) {
 		super();
 		this.id = id;
 		this.cabinName = cabin_name;
@@ -61,6 +73,16 @@ public class Cabin {
 		this.capacity = capacity;
 		this.amenitiesId = amenities_id;
 		this.imageId = image_id;
+		this.cabinloc = cabinloc;
+	}
+
+	
+	public CabinLocations getCabinloc() {
+		return cabinloc;
+	}
+
+	public void setCabinloc(CabinLocations cabinloc) {
+		this.cabinloc = cabinloc;
 	}
 
 	public long getId() {
