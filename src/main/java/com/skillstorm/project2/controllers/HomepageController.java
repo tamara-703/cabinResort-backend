@@ -37,6 +37,13 @@ public class HomepageController {
 		this.userService = userService;
 	}
 	
+	//Test mapping, delete later
+	@GetMapping("/test")
+	public String sayHello()
+	{
+		return "Hello!";
+	}
+	
 	//get all cabins
 	@GetMapping
 	public List<Cabin> getAllCabins()
