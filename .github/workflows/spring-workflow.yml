@@ -51,8 +51,7 @@ jobs: # These jobs are running on seperate VMs
 
       - name: deploy
         working-directory: target
-        run: aws s3 cp C:\Users\tamar\Documents\821.jpg s3:://project2-cabin-fever
-        # cabinResort-backend-1.0.0.jar
+        run: aws s3 cp target/cabinResort-backend-1.0.0.jar s3:://project2-cabin-fever
         # aws s3 cp * s3:://anything/
       
     
