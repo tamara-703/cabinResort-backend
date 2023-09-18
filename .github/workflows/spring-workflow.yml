@@ -45,14 +45,14 @@ jobs: # These jobs are running on seperate VMs
             java-version: "8"
 
       - name: Build project in maven
-        run: mvn -b package --file https://github.com/tamara-703/cabinResort-backend/blob/main/pom.xml
-        # Change the link to a relative path or keep as is?
+        run: mvn -B package --file pom.xml
+       
 
       - name: list files
-        run: ls -la spring/cabinResort-backend/target
+        run: ls -la target
 
       - name: deploy
-        working-directory: spring/cabinResort-backend/target
+        working-directory: target
         run: aws s3 cp * s3:://anything/
       
     
