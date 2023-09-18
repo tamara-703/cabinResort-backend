@@ -32,9 +32,9 @@ jobs: # These jobs are running on seperate VMs
         with:
            # AWS Access Key ID. Provide this key if you want to assume a role using access keys rather than a web identity token.
            # set these in the secret section in GitHub settings after creating a user on aws
-          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }} 
+          aws-access-key-id: ${{ secrets.PROJECT_ACCESS_KEY_ID }} 
           # AWS Secret Access Key. Required if aws-access-key-id is provided.
-          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.PROJECT_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
       - name: JDK installation
