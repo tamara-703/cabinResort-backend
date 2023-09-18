@@ -51,7 +51,7 @@ jobs: # These jobs are running on seperate VMs
 
       - name: deploy
         working-directory: target
-        run: aws s3 cp *.jar s3:://project2-cabin-fever
+        run: aws s3 cp *.jar s3://project2-cabin-fever
         # aws s3 cp * s3:://anything/
       
     
