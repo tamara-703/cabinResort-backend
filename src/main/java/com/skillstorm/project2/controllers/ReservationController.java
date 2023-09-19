@@ -24,9 +24,9 @@ import com.skillstorm.project2.services.ReservationService;
  * This Controller can only be accessed when a user is logged into their account
  * */
 
+@CrossOrigin("http://localhost:4200/")
 @RestController
 @RequestMapping("/user/reservations")
-@CrossOrigin("http://localhost:4200/")
 public class ReservationController {
 	
 	private ReservationService rsvpService;
