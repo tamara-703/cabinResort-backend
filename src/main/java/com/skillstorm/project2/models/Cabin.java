@@ -51,7 +51,7 @@ public class Cabin {
 	@JoinColumn(name="image_id")
 	private Image imageId;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="stateid", nullable=false)
 	@JsonIgnore
 	@JsonBackReference

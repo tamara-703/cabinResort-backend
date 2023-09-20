@@ -28,5 +28,10 @@ public class CabinService {
 	{
 		return cabinRepo.findById(id).get();
 	}
+	
+	public List<Cabin> getCabinByStateId(String stateId)
+	{
+		return cabinRepo.findByStateId(stateId);
+	}
 
 }

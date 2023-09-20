@@ -55,10 +55,17 @@ public class HomepageController {
 	}
 	
 	//get cabin by id
-	@GetMapping("/{id}")
-	public Cabin getCabinById(@PathVariable long id)
+//	@GetMapping("/{id}")
+//	public Cabin getCabinById(@PathVariable long id)
+//	{
+//		return cabinService.getCabinById(id);
+//	}
+//	
+	//get all cabins by state id
+	@GetMapping("/{stateId}")
+	public List<Cabin> getCabinByStateId(@PathVariable String stateId)
 	{
-		return cabinService.getCabinById(id);
+		return cabinService.getCabinByStateId(stateId);
 	}
 	
 	//user signup
