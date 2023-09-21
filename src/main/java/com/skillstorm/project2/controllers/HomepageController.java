@@ -24,7 +24,7 @@ import com.skillstorm.project2.services.UserService;
  * This controller can be accessed by both users and guests
  */
 
-@CrossOrigin("http://localhost:4200/")
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping("/homepage")
 public class HomepageController {

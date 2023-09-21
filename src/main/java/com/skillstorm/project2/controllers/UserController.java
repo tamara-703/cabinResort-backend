@@ -28,7 +28,7 @@ import com.skillstorm.project2.services.UserService;
  * 
  */
 
-@CrossOrigin("http://localhost:4200/")
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping("/user")
 public class UserController {
