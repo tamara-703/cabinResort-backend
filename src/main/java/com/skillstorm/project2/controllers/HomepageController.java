@@ -48,11 +48,11 @@ public class HomepageController {
 	}
 	
 	//get all cabins
-	@GetMapping
-	public List<Cabin> getAllCabins()
-	{
-		return cabinService.getAllCabins();
-	}
+//	@GetMapping
+//	public List<Cabin> getAllCabins()
+//	{
+//		return cabinService.getAllCabins();
+//	}
 	
 	//get cabin by id
 //	@GetMapping("/{id}")
@@ -66,6 +66,12 @@ public class HomepageController {
 	public List<Cabin> getCabinByStateId(@PathVariable String stateId)
 	{
 		return cabinService.getCabinByStateId(stateId);
+	}
+	
+	@GetMapping("/reserve/{id}")
+	public Cabin getCabinById(@PathVariable long id)
+	{
+		return cabinService.getCabinById(id);
 	}
 	
 	//user signup
