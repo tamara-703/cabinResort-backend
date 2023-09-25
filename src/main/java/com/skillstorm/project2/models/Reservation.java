@@ -1,7 +1,7 @@
 package com.skillstorm.project2.models;
 
-import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,23 +20,23 @@ public class Reservation {
 	private long id;
 
 	@Column(name="check_in")
-	private Date checkIn;
+	private String checkIn;
 	
 	@Column(name="check_out")
-	private Date checkOut;
+	private String checkOut;
 	
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="reserved_cabin_id")
 	private Cabin reservedCabinId;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="guest_id")
 	private GuestInformation guestId;
 
 	public Reservation() {}
 
-	public Reservation(long id, Date check_in, Date check_out, Cabin reserved_cabin_id, GuestInformation guest_id) {
+	public Reservation(long id, String check_in, String check_out, Cabin reserved_cabin_id, GuestInformation guest_id) {
 		super();
 		this.id = id;
 		this.checkIn = check_in;
@@ -53,19 +53,19 @@ public class Reservation {
 		this.id = id;
 	}
 
-	public Date getCheck_in() {
+	public String getCheck_in() {
 		return checkIn;
 	}
 
-	public void setCheck_in(Date check_in) {
+	public void setCheck_in(String check_in) {
 		this.checkIn = check_in;
 	}
 
-	public Date getCheck_out() {
+	public String getCheck_out() {
 		return checkOut;
 	}
 
-	public void setCheck_out(Date check_out) {
+	public void setCheck_out(String check_out) {
 		this.checkOut = check_out;
 	}
 
