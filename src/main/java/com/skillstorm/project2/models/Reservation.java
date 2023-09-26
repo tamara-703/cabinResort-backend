@@ -25,13 +25,13 @@ public class Reservation {
 	@Column(name="check_out")
 	private String checkOut;
 	
-	
-	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="reserved_cabin_id")
+	@OneToOne
 	private Cabin reservedCabinId;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	
 	@JoinColumn(name="guest_id")
+	@OneToOne
 	private GuestInformation guestId;
 
 	public Reservation() {}

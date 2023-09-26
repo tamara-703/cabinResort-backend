@@ -59,6 +59,7 @@ public class ReservationController {
 	@ResponseStatus(code=HttpStatus.CREATED)
 	public void createNewReservation(@RequestBody Reservation reservation)
 	{
+		System.out.println(reservation);
 		rsvpService.createNewReservation(reservation);
 	}
 
