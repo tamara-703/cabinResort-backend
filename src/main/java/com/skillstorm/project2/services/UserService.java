@@ -86,6 +86,11 @@ public class UserService implements UserDetailsService {
 		return usrRepo.findById(id).get();
 	}
 	
+	public String getUserByUsername(String username)
+	{
+		return usrRepo.findUserByUsername(username);
+	}
+	
 	public Optional<GuestInformation> getRegisteredUser(long id)
 	{
 		logger.info("GETTING REGISTERED USER");

@@ -25,4 +25,7 @@ public interface UserRepository extends JpaRepository<GuestInformation,Long>{
 	//verify if user exists in database
 	public boolean existsByUsername(String username);
 	
+	@Query("SELECT gi.username FROM GuestInformation gi WHERE gi.username = :username")
+	public String findUserByUsername(String username);
+	
 }

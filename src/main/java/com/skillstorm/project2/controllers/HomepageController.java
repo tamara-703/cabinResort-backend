@@ -75,6 +75,12 @@ public class HomepageController {
 		return cabinService.getCabinById(id);
 	}
 	
+	@GetMapping("/newuser/{username}")
+	public String getUserByUserName(@PathVariable String username)
+	{
+		return userService.getUserByUsername(username);
+	}
+	
 	//user signup
 	@PostMapping("/signup")
 	@ResponseStatus(code = HttpStatus.CREATED)

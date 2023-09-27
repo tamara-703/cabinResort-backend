@@ -27,6 +27,7 @@ public class SecurityConfigurations {
 			authorizeHttpRequests
 			.mvcMatchers("/homepage").permitAll()
 			.mvcMatchers("/homepage/signup").permitAll()
+			.mvcMatchers("/homepage/newuser/{username}").permitAll()
 			.mvcMatchers("/user/").authenticated()
 			.mvcMatchers("/user/**").hasAuthority("ROLE_USER");
 		}).httpBasic();
