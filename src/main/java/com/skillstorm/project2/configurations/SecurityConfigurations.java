@@ -43,6 +43,9 @@ public class SecurityConfigurations {
 		//enabling users to edit their profile by ignoring any unsafe PUT requests to the specified path
 		http.csrf((csrf) -> {
 			csrf.ignoringAntMatchers("/user/profile/{id}");
+			csrf.ignoringAntMatchers("/user/reservations");
+			csrf.ignoringAntMatchers("/user/reservations/{id}");
+			csrf.ignoringAntMatchers("/user/reservations/{rsvpId}");
 		});
 		
 		http.cors((cors) -> {
