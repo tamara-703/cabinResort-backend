@@ -64,7 +64,7 @@ public class UserService implements UserDetailsService {
 	}
 	
 	//user signup
-	public void registerUser(GuestInformation guestInfo) throws UserAlreadyExistsException
+	public String registerUser(GuestInformation guestInfo) throws UserAlreadyExistsException
 	{
 		String existingUser = guestInfo.getUsername();
 		boolean isUserExists = usrRepo.existsByUsername(existingUser);
@@ -79,6 +79,7 @@ public class UserService implements UserDetailsService {
 		
 		usrRepo.save(guestInfo);
 		
+		return "New User Registered";
 	}
 	
 	public GuestInformation findByUserId(long id)

@@ -51,6 +51,9 @@ class ReservationControllerTest {
 	@MockBean
 	private ReservationService rsvpService;
 
+	@InjectMocks
+    private ReservationController reservationController;
+	
 	Reservation r1;
 	Reservation r2;
 	List<Reservation> rList = new ArrayList<>();
@@ -59,7 +62,7 @@ class ReservationControllerTest {
 	void setUp() throws Exception {
 		
 		 // Initialize mocks and inject them into the controller
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
 
 		mockmvc = MockMvcBuilders.webAppContextSetup(context).apply(springSecurity()) // Apply Spring Security
 																						// configuration
@@ -126,9 +129,38 @@ class ReservationControllerTest {
 	  this.mockmvc.perform(get("/user/reservations/pvasantala"))
 	  .andExpect(status().isUnauthorized()); }
 
+	@Test
+    void testEditReservation_accepted() {
+        long reservationId = 1L;
+        Reservation reservation = new Reservation(); // Create a valid reservation object
+
+        // Mock the service method to return true (accepted)
+        when(rsvpService.editReservation(reservation, reservationId)).thenReturn(true);
+
+        ResponseEntity<Reservation> responseEntity = reservationController.editReservation(reservationId, reservation);
+
+        // Verify the response status and body
+        assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());
+    }
+    
+
+	
+	 
+	@WithMockUser(value = "ROLE_USER")
+	@Test
+	void testDeleteReservation()throws Exception  {
+		
+		when(rsvpService.deleteReservation(1))
+		 .thenReturn("Deleted Sucessfully");
+		
+		 this.mockmvc.perform(delete("/user/reservations/14").with(csrf().asHeader()))
+		 .andDo(print())
+		 .andExpect(status().isOk());
+
+	}
+	
 	
 	@WithMockUser(value = "ROLE_USER")
-
 	@Test
 	void testCreateNewReservation() throws Exception {
 		
@@ -239,37 +271,8 @@ class ReservationControllerTest {
 	}
 
 	
-	 @InjectMocks
-	    private ReservationController reservationController;
 	 
-    @Test
-    void testEditReservation_accepted() {
-        long reservationId = 1L;
-        Reservation reservation = new Reservation(); // Create a valid reservation object
-
-        // Mock the service method to return true (accepted)
-        when(rsvpService.editReservation(reservation, reservationId)).thenReturn(true);
-
-        ResponseEntity<Reservation> responseEntity = reservationController.editReservation(reservationId, reservation);
-
-        // Verify the response status and body
-        assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());
-    }
+	 
     
-
-	
-	 
-	@WithMockUser(value = "ROLE_USER")
-	@Test
-	void testDeleteReservation()throws Exception  {
-		
-		when(rsvpService.deleteReservation(1))
-		 .thenReturn("Deleted Sucessfully");
-		
-		 this.mockmvc.perform(delete("/user/reservations/14").with(csrf().asHeader()))
-		 .andDo(print())
-		 .andExpect(status().isOk());
-
-	}
 
 }
