@@ -38,8 +38,10 @@ public class UserService implements UserDetailsService {
 		return gi;
 	}
 
-	public void editById(GuestInformation guestInfo, long id) {
+	public boolean editById(GuestInformation guestInfo, long id) {
 
+		boolean result = false;
+		
 		GuestInformation existingUser = usrRepo.findById(id).get();
 
 		if (existingUser != null && existingUser.getId() == id) {
@@ -47,7 +49,10 @@ public class UserService implements UserDetailsService {
 			guestInfo.setPassword(passwordEncoder.encode(guestInfo.getPassword()));
 			guestInfo.setRole("ROLE_USER");
 			usrRepo.save(guestInfo);
+			result = true;
 		}
+		
+		return result;
 	}
 
 	@Override
