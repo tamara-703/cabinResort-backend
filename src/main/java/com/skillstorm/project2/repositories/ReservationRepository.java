@@ -1,6 +1,6 @@
 package com.skillstorm.project2.repositories;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,6 +16,6 @@ public interface ReservationRepository extends JpaRepository<Reservation,Long> {
 	
 	//get all reservations by user_id
 	@Query("SELECT rsvp FROM Reservation rsvp WHERE rsvp.guestId.username = :userName")
-	public Set<Reservation> findByUserName(@Param("userName") String userName);
+	public List<Reservation> findByUserName(@Param("userName") String userName);
 
 }

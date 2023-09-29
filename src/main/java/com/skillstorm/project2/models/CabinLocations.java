@@ -30,6 +30,17 @@ public class CabinLocations {
 	@JsonBackReference
 	@OneToMany(mappedBy = "cabinloc", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Cabin> cabins;
+	
+	
+
+	public CabinLocations(String stateId, String address, String city, String zip, List<Cabin> cabins) {
+		super();
+		this.stateId = stateId;
+		this.address = address;
+		this.city = city;
+		this.zip = zip;
+		this.cabins = cabins;
+	}
 
 	public String getStateId() {
 		return stateId;
