@@ -1,6 +1,6 @@
 package com.skillstorm.project2.services;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,16 +26,17 @@ public class ReservationService {
 	}
 	
 	//get all reservations by username
-	public Set<Reservation> getAllReservations(String userName)
+	public List<Reservation> getAllReservations(String userName)
 	{
 		return rsvpRepo.findByUserName(userName);
 	}
 	
 	
 	//post a reservation
-	public void createNewReservation(Reservation reservation)
+	public String createNewReservation(Reservation reservation)
 	{
 		rsvpRepo.save(reservation);
+		return "Reserved the cabin";
 	}
 	
 	//edit a reservation
@@ -54,9 +55,11 @@ public class ReservationService {
 	}
 	
 	//delete a reservation
-	public void deleteReservation(long id)
+	public String deleteReservation(long id)
 	{
 		rsvpRepo.deleteById(id);
+		
+		return "Deleted Sucessfully";
 	}
 
 }
