@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.project2.models.GuestInformation;
+import com.skillstorm.project2.models.Reservation;
 import com.skillstorm.project2.services.UserService;
 
 /* 
@@ -68,9 +69,17 @@ public class UserController {
 	//edit user profile
 	@PutMapping("/profile/{id}")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public void editUserProfile(@RequestBody GuestInformation gi, @PathVariable long id)
+	public ResponseEntity<GuestInformation> editUserProfile(@RequestBody GuestInformation gi, @PathVariable long id)
 	{
-		usrService.editById(gi,id);
+		boolean result = usrService.editById(gi,id);
+		
+		if(result == true)
+		{
+			return new ResponseEntity<>(HttpStatus.ACCEPTED);
+		}
+		else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 
 	}
 }

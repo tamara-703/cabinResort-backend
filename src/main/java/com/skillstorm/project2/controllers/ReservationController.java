@@ -1,6 +1,6 @@
 package com.skillstorm.project2.controllers;
 
-import java.util.Set;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +51,7 @@ public class ReservationController {
 	
 	//get all reservations made by a single user
 	@GetMapping("/{userName}")
-	public Set<Reservation> getAllReservationsByUserName(@PathVariable String userName)
+	public List<Reservation> getAllReservationsByUserName(@PathVariable String userName)
 	{
 		return rsvpService.getAllReservations(userName);
 	}
