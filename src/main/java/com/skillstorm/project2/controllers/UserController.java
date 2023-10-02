@@ -30,7 +30,7 @@ import com.skillstorm.project2.services.UserService;
  * 
  */
 
-@CrossOrigin(origins = "https://project2-cabin-fever.s3.amazonaws.com/home",  allowedHeaders= "*")
+//@CrossOrigin(origins = "https://project2-cabin-fever.s3.amazonaws.com/home",  allowedHeaders= "*")
 @RestController
 @RequestMapping("/user")
 public class UserController {
