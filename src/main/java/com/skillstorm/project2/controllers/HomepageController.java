@@ -62,7 +62,7 @@ public class HomepageController {
 	}
 	
 	@GetMapping("/newuser/{username}")
-	public String getUserByUserName(@PathVariable String username)
+	public GuestInformation getUserByUserName(@PathVariable String username)
 	{
 		return userService.getUserByUsername(username);
 	}

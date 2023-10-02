@@ -92,9 +92,9 @@ public class UserService implements UserDetailsService {
 		return usrRepo.findById(id).get();
 	}
 	
-	public String getUserByUsername(String username)
+	public GuestInformation getUserByUsername(String username)
 	{
-		return usrRepo.findUserByUsername(username);
+		return usrRepo.findByUserName(username);
 	}
 	
 	public Optional<GuestInformation> getRegisteredUser(long id)
