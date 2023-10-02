@@ -9,8 +9,9 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("https://project2-cabin-fever.s3.amazonaws.com") 
+                .allowedOrigins("*") //try "https://project2-cabin-fever.s3.amazonaws.com" if this fails
                 .allowedMethods("GET","POST","DELETE","PUT")
-                .allowedHeaders("*");
+                .allowedHeaders("Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization");
+        
     }
 }
