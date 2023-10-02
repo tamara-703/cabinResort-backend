@@ -25,7 +25,7 @@ import com.skillstorm.project2.services.UserService;
  * This controller can be accessed by both users and guests
  */
 
-@CrossOrigin(origins = "https://project2-cabin-fever.s3.amazonaws.com", allowedHeaders= "*")
+@CrossOrigin(origins = "https://project2-cabin-fever.s3.amazonaws.com/home", allowedHeaders= "*")
 @RestController
 @RequestMapping("/homepage")
 public class HomepageController {
