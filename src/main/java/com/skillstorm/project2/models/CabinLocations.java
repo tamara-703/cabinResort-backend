@@ -31,7 +31,7 @@ public class CabinLocations {
 	@OneToMany(mappedBy = "cabinloc", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Cabin> cabins;
 	
-	
+	public CabinLocations() {}
 
 	public CabinLocations(String stateId, String address, String city, String zip, List<Cabin> cabins) {
 		super();
