@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.skillstorm.project2.configurations"},{"l":"com.skillstorm.project2.controllers"},{"l":"com.skillstorm.project2.exceptions"},{"l":"com.skillstorm.project2.models"},{"l":"com.skillstorm.project2.repositories"},{"l":"com.skillstorm.project2.services"}];updateSearchResults();
