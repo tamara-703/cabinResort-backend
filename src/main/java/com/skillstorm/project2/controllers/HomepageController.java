@@ -25,6 +25,10 @@ import com.skillstorm.project2.services.UserService;
  * This controller can be accessed by both users and guests
  */
 
+
+/*
+ * This endpoint returns the homepage of the Cabin Resorts website
+ * */
 @CrossOrigin(origins = "http://project2-cabin-fever.s3-website-us-east-1.amazonaws.com/", allowedHeaders= "*")
 @RestController
 @RequestMapping("/homepage")
@@ -49,6 +53,9 @@ public class HomepageController {
 		return "<h1>Hello from AWS!</h1>";
 	}
 
+	/*
+	 * Returns all the list of cabins of a the selected State
+	 * */
 	//get all cabins by state id
 	@GetMapping("/{stateId}")
 	public List<Cabin> getCabinByStateId(@PathVariable String stateId)
@@ -56,18 +63,27 @@ public class HomepageController {
 		return cabinService.getCabinByStateId(stateId);
 	}
 	
+	/*
+	 * Returns the details of the particular cabin that the guest would like to reserve
+	 * */
 	@GetMapping("/reserve/{id}")
 	public Cabin getCabinById(@PathVariable long id)
 	{
 		return cabinService.getCabinById(id);
 	}
 	
+	/*
+	 * Returns the guest information for the user profile page
+	 * */
 	@GetMapping("/newuser/{username}")
 	public GuestInformation getUserByUserName(@PathVariable String username)
 	{
 		return userService.getUserByUsername(username);
 	}
 	
+	/*
+	 * Saves the newly created user information to the DB
+	 * */
 	//user signup
 	@PostMapping("/signup")
 	@ResponseStatus(code = HttpStatus.CREATED)

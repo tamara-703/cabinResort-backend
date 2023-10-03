@@ -14,11 +14,18 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+
+/*
+ * Enabling Spring security for the application
+ * */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfigurations {
 	
+	/* Setting the patterns to which authorization is required
+	 * Also enables the csrf settings
+	 * */
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
 	{
@@ -63,6 +70,9 @@ public class SecurityConfigurations {
 		return passwordEncoder;
 	}
 	
+	/*
+	 * Setting the CORS configurations
+	 * */
 	private CorsConfiguration corsConfiguration() {
 		CorsConfiguration configuration = new CorsConfiguration();
 		configuration.setAllowedOrigins(Arrays.asList("http://project2-cabin-fever.s3-website-us-east-1.amazonaws.com/")); // Add your allowed origins //http://project2-cabin-fever.s3-website-us-east-1.amazonaws.com/
