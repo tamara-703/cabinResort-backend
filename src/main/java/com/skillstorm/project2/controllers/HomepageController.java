@@ -45,6 +45,7 @@ public class HomepageController {
 	@GetMapping("/test")
 	public String sayHello()
 	{
+		//test return
 		return "<h1>Hello from AWS!</h1>";
 	}
 
