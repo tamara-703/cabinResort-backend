@@ -2,6 +2,8 @@ package com.skillstorm.project2.services;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +14,13 @@ import com.skillstorm.project2.repositories.ReservationRepository;
 public class ReservationService {
 	
 	private ReservationRepository rsvpRepo;
+	private EmailService emailService;
 	
 	@Autowired
-	public ReservationService (ReservationRepository rsvpRepo)
+	public ReservationService (ReservationRepository rsvpRepo, EmailService emailService)
 	{
 		this.rsvpRepo = rsvpRepo;
+		this.emailService = emailService;
 	}
 	
 	//get reservation by id
@@ -36,6 +40,8 @@ public class ReservationService {
 	public String createNewReservation(Reservation reservation)
 	{
 		rsvpRepo.save(reservation);
+		
+		sendEmail(reservation);
 		return "Reserved the cabin";
 	}
 	
@@ -61,5 +67,14 @@ public class ReservationService {
 		
 		return "Deleted Sucessfully";
 	}
-
+	private String sendEmail(Reservation reservation) {
+        try {
+			emailService.sendHtmlMessage(reservation);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return "Email sent successfully.";
+    }
+	
 }
