@@ -65,7 +65,7 @@ public class SecurityConfigurations {
 	
 	private CorsConfiguration corsConfiguration() {
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(Arrays.asList("http://project2-cabin-fever.s3-website-us-east-1.amazonaws.com/")); // Add your allowed origins
+		configuration.setAllowedOrigins(Arrays.asList("http://project2-cabin-fever.s3-website-us-east-1.amazonaws.com/")); // Add your allowed origins //http://project2-cabin-fever.s3-website-us-east-1.amazonaws.com/
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 		configuration.setAllowedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Authorization"));
 		configuration.setAllowCredentials(false); // Allow cookies and credentials

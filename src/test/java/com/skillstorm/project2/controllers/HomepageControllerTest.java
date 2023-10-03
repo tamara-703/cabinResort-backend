@@ -86,12 +86,14 @@ class HomepageControllerTest {
 	  @Test 
 	  public void testGetUserByUserName() throws Exception{ 
 		  
-//		  when(userService.getUserByUsername("mross"))
-//			.thenReturn("mross"); we changed the return type of this method from string to GuestInformation object
+		  GuestInformation gi1 = new GuestInformation(6, "Vasantala", "Phani is awesome", "pvasantala", "secret567",
+					"pvasantala@skillstorm.com", "56546465", "1234 main street UPDATED5", "English", "ROLE_USER");
+		  
+		  when(userService.getUserByUsername("mross"))
+			.thenReturn(gi1); 
 			
 			this.mockmvc.perform(get("/homepage/newuser/mross"))
 			.andExpect(status().isOk());
-		  //userService.getUserByUsername(username);
 	  }
 	  
 	  @WithMockUser(value = "ROLE_USER")

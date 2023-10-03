@@ -15,6 +15,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.skillstorm.project2.configurations.ConcreteGrantedAuthority;
+import com.skillstorm.project2.configurations.GrantedAuthorityDeserializer;
+
 
 /*
  * TODO : Add @NotBlank annotation to all columns except Id (since all columns will be required)
@@ -24,6 +28,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table(name="guests")
 public class GuestInformation implements UserDetails {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -162,6 +171,7 @@ public class GuestInformation implements UserDetails {
 	}
 
 	@Override
+	@JsonDeserialize(using = GrantedAuthorityDeserializer.class)
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		
 		Set<SimpleGrantedAuthority> authorities = new HashSet<>();

@@ -30,8 +30,9 @@ import com.skillstorm.project2.services.UserService;
  * 
  */
 //production url: http://project2-cabin-fever.s3-website-us-east-1.amazonaws.com/
+//development url: http://localhost:4200/
 
-@CrossOrigin(origins = "http://localhost:4200/",  allowedHeaders= "*")
+@CrossOrigin(origins = "http://project2-cabin-fever.s3-website-us-east-1.amazonaws.com/",  allowedHeaders= "*")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -70,17 +71,11 @@ public class UserController {
 	//edit user profile
 	@PutMapping("/profile/{id}")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public ResponseEntity<GuestInformation> editUserProfile(@RequestBody GuestInformation gi, @PathVariable long id)
+	public GuestInformation editUserProfile(@RequestBody GuestInformation gi, @PathVariable long id)
 	{
-		boolean result = usrService.editById(gi,id);
+		return usrService.editById(gi,id);
 		
-		if(result == true)
-		{
-			return new ResponseEntity<>(HttpStatus.ACCEPTED);
-		}
-		else {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
+		
 
 	}
 }
