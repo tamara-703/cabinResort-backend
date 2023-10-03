@@ -2,6 +2,8 @@ package com.skillstorm.project2.controllers;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,12 +27,14 @@ import com.skillstorm.project2.services.ReservationService;
  * This Controller can only be accessed when a user is logged into their account
  * */
 
-@CrossOrigin(origins = "https://project2-cabin-fever.s3.amazonaws.com/home",  allowedHeaders= "*")
+
+@CrossOrigin(origins = "http://localhost:4200/",  allowedHeaders= "*")
 @RestController
 @RequestMapping("/user/reservations")
 public class ReservationController {
 	
 	private ReservationService rsvpService;
+	Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	public ReservationController(ReservationService rsvpService)
@@ -59,8 +63,9 @@ public class ReservationController {
 	@ResponseStatus(code=HttpStatus.CREATED)
 	public void createNewReservation(@RequestBody Reservation reservation)
 	{
-		System.out.println(reservation);
+		
 		rsvpService.createNewReservation(reservation);
+		logger.debug("Reservation", reservation);
 	}
 
 	//edit reservation by id

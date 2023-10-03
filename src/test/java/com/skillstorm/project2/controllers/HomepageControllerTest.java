@@ -86,8 +86,8 @@ class HomepageControllerTest {
 	  @Test 
 	  public void testGetUserByUserName() throws Exception{ 
 		  
-		  when(userService.getUserByUsername("mross"))
-			.thenReturn("mross");
+//		  when(userService.getUserByUsername("mross"))
+//			.thenReturn("mross"); we changed the return type of this method from string to GuestInformation object
 			
 			this.mockmvc.perform(get("/homepage/newuser/mross"))
 			.andExpect(status().isOk());

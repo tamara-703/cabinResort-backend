@@ -25,7 +25,7 @@ import com.skillstorm.project2.services.UserService;
  * This controller can be accessed by both users and guests
  */
 
-@CrossOrigin(origins = "https://project2-cabin-fever.s3.amazonaws.com/home", allowedHeaders= "*")
+@CrossOrigin(origins = "http://localhost:4200/", allowedHeaders= "*")
 @RestController
 @RequestMapping("/homepage")
 public class HomepageController {
@@ -45,23 +45,10 @@ public class HomepageController {
 	@GetMapping("/test")
 	public String sayHello()
 	{
+		//test return
 		return "<h1>Hello from AWS!</h1>";
 	}
-	
-	//get all cabins
-//	@GetMapping
-//	public List<Cabin> getAllCabins()
-//	{
-//		return cabinService.getAllCabins();
-//	}
-	
-	//get cabin by id
-//	@GetMapping("/{id}")
-//	public Cabin getCabinById(@PathVariable long id)
-//	{
-//		return cabinService.getCabinById(id);
-//	}
-//	
+
 	//get all cabins by state id
 	@GetMapping("/{stateId}")
 	public List<Cabin> getCabinByStateId(@PathVariable String stateId)
@@ -76,7 +63,7 @@ public class HomepageController {
 	}
 	
 	@GetMapping("/newuser/{username}")
-	public String getUserByUserName(@PathVariable String username)
+	public GuestInformation getUserByUserName(@PathVariable String username)
 	{
 		return userService.getUserByUsername(username);
 	}

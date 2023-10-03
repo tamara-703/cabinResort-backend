@@ -29,8 +29,9 @@ import com.skillstorm.project2.services.UserService;
  * This Controller will only be accessed when a user is logged into their account
  * 
  */
+//production url: http://project2-cabin-fever.s3-website-us-east-1.amazonaws.com/
 
-@CrossOrigin(origins = "https://project2-cabin-fever.s3.amazonaws.com/home",  allowedHeaders= "*")
+@CrossOrigin(origins = "http://localhost:4200/",  allowedHeaders= "*")
 @RestController
 @RequestMapping("/user")
 public class UserController {
