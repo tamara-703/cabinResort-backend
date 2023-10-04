@@ -20,7 +20,7 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    /*
+    /**
      * This method sends an email notification to the customer about the reservation details at the Cabin Resorts
      * */
     public void sendHtmlMessage(Reservation reservation) throws MessagingException {
