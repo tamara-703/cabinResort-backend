@@ -18,28 +18,28 @@ public class CabinLocations {
 	@Column(name = "stateid")
 	private String stateId;
 	
-	@Column
+	@Column(name = "address")
 	private String address;
 	
-	@Column
+	@Column(name = "city")
 	private String city;
 	
-	@Column
+	@Column(name = "zip")
 	private String zip;
 	
-	@JsonBackReference
-	@OneToMany(mappedBy = "cabinloc", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Cabin> cabins;
+//	@JsonBackReference
+//	@OneToMany(mappedBy = "cabinloc", cascade = CascadeType.ALL, orphanRemoval = true)
+//    List<Cabin> cabins;
 	
 	public CabinLocations() {}
 
-	public CabinLocations(String stateId, String address, String city, String zip, List<Cabin> cabins) {
+	public CabinLocations(String stateId, String address, String city, String zip) {
 		super();
 		this.stateId = stateId;
 		this.address = address;
 		this.city = city;
 		this.zip = zip;
-		this.cabins = cabins;
+//		this.cabins = cabins;
 	}
 
 	public String getStateId() {
@@ -74,19 +74,19 @@ public class CabinLocations {
 		this.zip = zip;
 	}
 
-	public List<Cabin> getCabins() {
-		return cabins;
-	}
+//	public List<Cabin> getCabins() {
+//		return cabins;
+//	}
+//
+//	public void setCabins(List<Cabin> cabins) {
+//		this.cabins = cabins;
+//	}
 
-	public void setCabins(List<Cabin> cabins) {
-		this.cabins = cabins;
-	}
-
-	@Override
-	public String toString() {
-		return "CabinLocations [stateId=" + stateId + ", address=" + address + ", city=" + city + ", zip=" + zip
-				+ ", cabins=" + cabins + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "CabinLocations [stateId=" + stateId + ", address=" + address + ", city=" + city + ", zip=" + zip
+//				+ ", cabins=" + cabins + "]";
+//	}
 	
 		
 }

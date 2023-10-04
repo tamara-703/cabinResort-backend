@@ -32,7 +32,7 @@ import com.skillstorm.project2.services.UserService;
 //production url: http://project2-cabin-fever.s3-website-us-east-1.amazonaws.com/
 //development url: http://localhost:4200/
 
-@CrossOrigin(origins = "http://project2-cabin-fever.s3-website-us-east-1.amazonaws.com/",  allowedHeaders= "*")
+@CrossOrigin(origins = "http://localhost:4200/",  allowedHeaders= "*")
 @RestController
 @RequestMapping("/user")
 public class UserController {

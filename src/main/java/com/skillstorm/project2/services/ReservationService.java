@@ -46,18 +46,17 @@ public class ReservationService {
 	}
 	
 	//edit a reservation
-	public boolean editReservation(Reservation reservation, long id)
+	public Reservation editReservation(Reservation reservation, long id)
 	{
-		boolean result = false;
 		Reservation existingReservation = rsvpRepo.findById(id).get();
 		
 		if(existingReservation.getId() == id)
 		{
-			rsvpRepo.save(reservation);
-			result = true;
+			return rsvpRepo.save(reservation);
+			
 		}
 		
-		return result;
+		return null;
 	}
 	
 	//delete a reservation
@@ -67,6 +66,8 @@ public class ReservationService {
 		
 		return "Deleted Sucessfully";
 	}
+	
+	
 	private String sendEmail(Reservation reservation) {
         try {
 			emailService.sendHtmlMessage(reservation);

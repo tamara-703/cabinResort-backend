@@ -28,7 +28,7 @@ import com.skillstorm.project2.services.ReservationService;
  * */
 
 
-@CrossOrigin(origins = "http://project2-cabin-fever.s3-website-us-east-1.amazonaws.com/",  allowedHeaders= "*")
+@CrossOrigin(origins = "http://localhost:4200/",  allowedHeaders= "*")
 @RestController
 @RequestMapping("/user/reservations")
 public class ReservationController {
@@ -70,17 +70,10 @@ public class ReservationController {
 
 	//edit reservation by id
 	@PutMapping("/{id}")
-	public ResponseEntity<Reservation> editReservation(@PathVariable long id, @RequestBody Reservation reservation)
+	public Reservation editReservation(@PathVariable long id, @RequestBody Reservation reservation)
 	{
-		boolean result = rsvpService.editReservation(reservation, id);
 		
-		if(result == true)
-		{
-			return new ResponseEntity<>(HttpStatus.ACCEPTED);
-		}
-		else {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
+		return rsvpService.editReservation(reservation, id);
 		
 		
 	}
