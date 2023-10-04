@@ -29,7 +29,7 @@ public class GrantedAuthorityDeserializer extends StdDeserializer<GrantedAuthori
     }
 
 
-/*
+/**
  * This method deserializes the JSON objects to Java objects
  * */    
     @Override

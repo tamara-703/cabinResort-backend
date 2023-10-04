@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skillstorm.project2.models.Reservation;
 import com.skillstorm.project2.services.ReservationService;
 
-/* 
+/** 
  * USER'S RESERVATIONS
  * This Controller can only be accessed when a user is logged into their account
  * */
@@ -43,7 +43,7 @@ public class ReservationController {
 	}
 	
 	
-	/*
+	/**
 	 * Returns the Reservation details based on the reservation number
 	 * */
 	@GetMapping("/reservation/{rsvpId}")
@@ -53,7 +53,7 @@ public class ReservationController {
 	}
 	
 	
-	/*
+	/**
 	 * Returns all the reservations made by a particular guest 
 	 * */
 	@GetMapping("/{userName}")
@@ -63,7 +63,7 @@ public class ReservationController {
 	}
 
 	
-	/*
+	/**
 	 * Creates a new reservation and persists the information in the DB
 	 * */
 	@PostMapping
@@ -75,7 +75,7 @@ public class ReservationController {
 		logger.debug("Reservation", reservation);
 	}
 
-	/*
+	/**
 	 * updates the existing reservation details in the DB
 	 * */
 	@PutMapping("/{id}")
@@ -94,7 +94,7 @@ public class ReservationController {
 		
 	}
 	
-	/*
+	/**
 	 * Deletes an existing reservation based on the reservation number
 	 * */
 	@DeleteMapping("/{rsvpId}")

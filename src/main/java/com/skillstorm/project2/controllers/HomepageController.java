@@ -26,7 +26,7 @@ import com.skillstorm.project2.services.UserService;
  */
 
 
-/*
+/**
  * This endpoint returns the homepage of the Cabin Resorts website
  * */
 @CrossOrigin(origins = "http://project2-cabin-fever.s3-website-us-east-1.amazonaws.com/", allowedHeaders= "*")
@@ -53,7 +53,7 @@ public class HomepageController {
 		return "<h1>Hello from AWS!</h1>";
 	}
 
-	/*
+	/**
 	 * Returns all the list of cabins of a the selected State
 	 * */
 	//get all cabins by state id
@@ -63,7 +63,7 @@ public class HomepageController {
 		return cabinService.getCabinByStateId(stateId);
 	}
 	
-	/*
+	/**
 	 * Returns the details of the particular cabin that the guest would like to reserve
 	 * */
 	@GetMapping("/reserve/{id}")
@@ -72,7 +72,7 @@ public class HomepageController {
 		return cabinService.getCabinById(id);
 	}
 	
-	/*
+	/**
 	 * Returns the guest information for the user profile page
 	 * */
 	@GetMapping("/newuser/{username}")
@@ -81,7 +81,7 @@ public class HomepageController {
 		return userService.getUserByUsername(username);
 	}
 	
-	/*
+	/**
 	 * Saves the newly created user information to the DB
 	 * */
 	//user signup

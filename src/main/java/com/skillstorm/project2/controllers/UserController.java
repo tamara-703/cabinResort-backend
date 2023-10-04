@@ -24,7 +24,7 @@ import com.skillstorm.project2.models.GuestInformation;
 import com.skillstorm.project2.models.Reservation;
 import com.skillstorm.project2.services.UserService;
 
-/* 
+/** 
  * USER'S PROFILE
  * This Controller will only be accessed when a user is logged into their account
  * 
@@ -46,7 +46,7 @@ public class UserController {
 		this.usrService = usrService;
 	}
 
-	/*
+	/**
 	 * 
 	 * get the Principal (all metadata of the user object)
 	 * */
@@ -56,7 +56,7 @@ public class UserController {
 		return principal;
 	}
 
-	/*
+	/**
 	 * 
 	 * get the user object (i.e only the user's information)
 	 * */
@@ -66,7 +66,7 @@ public class UserController {
 		return user;
 	}
 	
-	/*
+	/**
 	 * 
 	 * Returns updated user profile
 	 * 
@@ -78,7 +78,7 @@ public class UserController {
 	}
 	
 
-	/*
+	/**
 	 * Persists the updated details of the user profile to the DB
 	 * */
 	@PutMapping("/profile/{id}")
