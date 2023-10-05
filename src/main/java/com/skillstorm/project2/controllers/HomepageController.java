@@ -20,6 +20,11 @@ import com.skillstorm.project2.models.GuestInformation;
 import com.skillstorm.project2.services.CabinService;
 import com.skillstorm.project2.services.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 /*
  * HOMEPAGE 
  * This controller can be accessed by both users and guests
@@ -57,6 +62,15 @@ public class HomepageController {
 	 * Returns all the list of cabins of a the selected State
 	 * */
 	//get all cabins by state id
+	@Operation(summary = "Gets list of cabins by local id")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode="200",
+						 description ="Got list of cabins by local id",
+						 content = {@Content(mediaType="application/json")}),
+			@ApiResponse(responseCode="404",
+			 description ="No Cabins found for local id",
+			 content = @Content)
+	})
 	@GetMapping("/{stateId}")
 	public List<Cabin> getCabinByStateId(@PathVariable String stateId)
 	{
@@ -66,6 +80,15 @@ public class HomepageController {
 	/**
 	 * Returns the details of the particular cabin that the guest would like to reserve
 	 * */
+	@Operation(summary = "Gets cabin by cabin id")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode="200",
+						 description ="Got cabin id",
+						 content = {@Content(mediaType="application/json")}),
+			@ApiResponse(responseCode="404",
+			 description ="No Cabin found for that id",
+			 content = @Content)
+	})
 	@GetMapping("/reserve/{id}")
 	public Cabin getCabinById(@PathVariable long id)
 	{
@@ -75,6 +98,15 @@ public class HomepageController {
 	/**
 	 * Returns the guest information for the user profile page
 	 * */
+	@Operation(summary = "Gets a user by thier username")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode="200",
+						 description ="Found User with given username",
+						 content = {@Content(mediaType="application/json")}),
+			@ApiResponse(responseCode="404",
+			 description ="No User found with that username",
+			 content = @Content)
+	})
 	@GetMapping("/newuser/{username}")
 	public GuestInformation getUserByUserName(@PathVariable String username)
 	{

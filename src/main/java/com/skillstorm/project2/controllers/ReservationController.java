@@ -22,6 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skillstorm.project2.models.Reservation;
 import com.skillstorm.project2.services.ReservationService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.media.Content;
+
 /** 
  * USER'S RESERVATIONS
  * This Controller can only be accessed when a user is logged into their account
@@ -46,6 +52,15 @@ public class ReservationController {
 	/**
 	 * Returns the Reservation details based on the reservation number
 	 * */
+	@Operation(summary = "Gets reservation by reservation id")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode="200",
+						 description ="Reservation with id Found",
+						 content = {@Content(mediaType="application/json")}),
+			@ApiResponse(responseCode="404",
+			 description ="Reservation with id not Found",
+			 content = @Content)
+	})
 	@GetMapping("/reservation/{rsvpId}")
 	public Reservation getReservationById(@PathVariable long rsvpId)
 	{
@@ -56,6 +71,15 @@ public class ReservationController {
 	/**
 	 * Returns all the reservations made by a particular guest 
 	 * */
+	@Operation(summary = "Gets reservation for guest by their username")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode="200",
+						 description ="Reservations from username Found",
+						 content = {@Content(mediaType="application/json")}),
+			@ApiResponse(responseCode="404",
+			 description ="No reservation found for username",
+			 content = @Content)
+	})
 	@GetMapping("/{userName}")
 	public List<Reservation> getAllReservationsByUserName(@PathVariable String userName)
 	{
@@ -66,6 +90,14 @@ public class ReservationController {
 	/**
 	 * Creates a new reservation and persists the information in the DB
 	 * */
+	@ApiResponses(value = {
+			@ApiResponse(responseCode="200",
+						 description ="Creates a reservation",
+						 content = @Content),
+			@ApiResponse(responseCode="401",
+			 description ="User not logged in to make reservation",
+			 content = @Content)
+	})
 	@PostMapping
 	@ResponseStatus(code=HttpStatus.CREATED)
 	public void createNewReservation(@RequestBody Reservation reservation)
@@ -78,6 +110,15 @@ public class ReservationController {
 	/**
 	 * updates the existing reservation details in the DB
 	 * */
+	@ApiResponses(value = {
+			@ApiResponse(responseCode="200",
+						 description ="Creates a reservation for user by id",
+						 content = @Content),
+			@ApiResponse(responseCode="401",
+			 description ="User not logged in to make reservation",
+			 content = @Content)
+	})
+	@SecurityRequirement(name = "basic Auth", scopes = "write")
 	@PutMapping("/{id}")
 	public ResponseEntity<Reservation> editReservation(@PathVariable long id, @RequestBody Reservation reservation)
 	{
@@ -97,6 +138,15 @@ public class ReservationController {
 	/**
 	 * Deletes an existing reservation based on the reservation number
 	 * */
+	@Operation(summary = "Deletes reservation by id")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode="200",
+						 description ="Deletes reservation with given id",
+						 content = {@Content(mediaType="application/json")}),
+			@ApiResponse(responseCode="404",
+			 description ="No reservation with given id found",
+			 content = @Content)
+	})
 	@DeleteMapping("/{rsvpId}")
 	public void deleteReservation(@PathVariable long rsvpId)
 	{

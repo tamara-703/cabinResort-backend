@@ -24,6 +24,12 @@ import com.skillstorm.project2.models.GuestInformation;
 import com.skillstorm.project2.models.Reservation;
 import com.skillstorm.project2.services.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 /** 
  * USER'S PROFILE
  * This Controller will only be accessed when a user is logged into their account
@@ -60,6 +66,16 @@ public class UserController {
 	 * 
 	 * get the user object (i.e only the user's information)
 	 * */
+	@Operation(summary = "Gets user when they log in")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode="200",
+						 description ="User was logged in and retreived",
+						 content = {@Content(mediaType="application/json")}),
+			@ApiResponse(responseCode="404",
+			 description ="No user found",
+			 content = @Content)
+	})
+	@SecurityRequirement(name = "basic Auth", scopes = "read")
 	@GetMapping("/profile")
 	public GuestInformation getUser(@AuthenticationPrincipal GuestInformation user)
 	{
@@ -71,6 +87,15 @@ public class UserController {
 	 * Returns updated user profile
 	 * 
 	 * */
+	@Operation(summary = "Gets User id")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode="200",
+						 description ="Got user with given id",
+						 content = {@Content(mediaType="application/json")}),
+			@ApiResponse(responseCode="404",
+			 description ="No user with given id found",
+			 content = @Content)
+	})
 	@GetMapping("/profile/{userId}")
 	public GuestInformation getUserById(@PathVariable long userId)
 	{
@@ -81,6 +106,15 @@ public class UserController {
 	/**
 	 * Persists the updated details of the user profile to the DB
 	 * */
+	@Operation(summary = "Updates User id")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode="200",
+						 description ="Updated user with given id",
+						 content = {@Content(mediaType="application/json")}),
+			@ApiResponse(responseCode="404",
+			 description ="No user with given id found",
+			 content = @Content)
+	})
 	@PutMapping("/profile/{id}")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public GuestInformation editUserProfile(@RequestBody GuestInformation gi, @PathVariable long id)
