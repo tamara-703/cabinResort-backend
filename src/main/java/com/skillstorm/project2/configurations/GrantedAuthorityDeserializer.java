@@ -28,8 +28,11 @@ public class GrantedAuthorityDeserializer extends StdDeserializer<GrantedAuthori
 
     }
 
-    @Override
 
+/**
+ * This method deserializes the JSON objects to Java objects
+ * */    
+    @Override
     public GrantedAuthority deserialize(JsonParser jsonParser, DeserializationContext context) throws IOException {
 
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);

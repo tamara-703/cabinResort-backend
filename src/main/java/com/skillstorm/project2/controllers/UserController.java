@@ -24,7 +24,7 @@ import com.skillstorm.project2.models.GuestInformation;
 import com.skillstorm.project2.models.Reservation;
 import com.skillstorm.project2.services.UserService;
 
-/* 
+/** 
  * USER'S PROFILE
  * This Controller will only be accessed when a user is logged into their account
  * 
@@ -46,21 +46,31 @@ public class UserController {
 		this.usrService = usrService;
 	}
 
-	//get the Principal (all metadata of the user object)
+	/**
+	 * 
+	 * get the Principal (all metadata of the user object)
+	 * */
 	@GetMapping
 	public Principal getPrincipal(Principal principal)
 	{
 		return principal;
 	}
 
-	//get the user object (i.e only the user's information)
+	/**
+	 * 
+	 * get the user object (i.e only the user's information)
+	 * */
 	@GetMapping("/profile")
 	public GuestInformation getUser(@AuthenticationPrincipal GuestInformation user)
 	{
 		return user;
 	}
 	
-	//get user profile after update
+	/**
+	 * 
+	 * Returns updated user profile
+	 * 
+	 * */
 	@GetMapping("/profile/{userId}")
 	public GuestInformation getUserById(@PathVariable long userId)
 	{
@@ -68,7 +78,9 @@ public class UserController {
 	}
 	
 
-	//edit user profile
+	/**
+	 * Persists the updated details of the user profile to the DB
+	 * */
 	@PutMapping("/profile/{id}")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public GuestInformation editUserProfile(@RequestBody GuestInformation gi, @PathVariable long id)

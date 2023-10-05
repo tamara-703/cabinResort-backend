@@ -14,11 +14,19 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+
+/**
+ * Enabling Spring security for the application
+ * */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfigurations {
 	
+	/**
+	 * Setting the patterns to which authorization is required
+	 * Also enables the csrf settings
+	 * */
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
 	{
@@ -32,7 +40,9 @@ public class SecurityConfigurations {
 			.mvcMatchers("/user/**").hasAuthority("ROLE_USER");
 		}).httpBasic();
 		
-		//enabling users to signup by ignoring any unsafe POST requests to the specified path
+		/**
+		 * enabling users to signup by ignoring any unsafe POST requests to the specified path
+		 */
 		http.csrf((csrf) -> {
 			csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 			.ignoringAntMatchers("/homepage/signup")
@@ -40,7 +50,9 @@ public class SecurityConfigurations {
 		});
 		
 
-		//enabling users to edit their profile by ignoring any unsafe PUT requests to the specified path
+		/**
+		 * enabling users to edit their profile by ignoring any unsafe PUT requests to the specified path
+		 */
 		http.csrf((csrf) -> {
 			csrf.ignoringAntMatchers("/user/profile/{id}");
 			csrf.ignoringAntMatchers("/user/reservations");
@@ -63,6 +75,9 @@ public class SecurityConfigurations {
 		return passwordEncoder;
 	}
 	
+	/**
+	 * Setting the CORS configurations
+	 * */
 	private CorsConfiguration corsConfiguration() {
 		CorsConfiguration configuration = new CorsConfiguration();
 		configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200/")); // Add your allowed origins //http://project2-cabin-fever.s3-website-us-east-1.amazonaws.com/

@@ -21,6 +21,9 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
+    /**
+     * This method sends an email notification to the customer about the reservation details at the Cabin Resorts
+     * */
     public void sendHtmlMessage(Reservation reservation) throws MessagingException {
     	
     	String to = reservation.getGuest_id().getEmail();
@@ -37,6 +40,9 @@ public class EmailService {
         javaMailSender.send(message);
     }
     
+    /*
+     * This method returns the email content that has to be sent to the customer
+     * */
     private String getEmailContent(Reservation reservation) {
         	
         return "<html>"
@@ -54,13 +60,21 @@ public class EmailService {
                 + "<h3>We are glad to inform that your cabin reservation with Cabin Fever Resorts has been confirmed!!</h3>"
                 + "<h4>Please find below the details.</h4>"
                 + "<table border='1'>"
-                + "<tr><th>Reservation number</th><th>Cabin Type</th><th>Guest Information</th><th>Dates Booked</th><th>Amount paid</th></tr>"
-                + "<tr><td>"+reservation.getId()+"</td><td>"+reservation.getReserved_cabin_id().getCabin_name()+"</td><td>"+reservation.getGuest_id().getEmail() 
-				+ ", "
-				+ reservation.getGuest_id().getPhone()
-		  +", "+reservation.getReserved_cabin_id()+"</td><td>"+reservation.getCheck_in()+"-"+reservation.getCheck_out()+"</td><td>$"+reservation.getReserved_cabin_id().getPrice()+"</td></tr>"
+                + "<tr><th>Reservation number</th><th>Cabin Type</th><th>Cabin Location</th><th>Dates Booked</th><th>Amount paid</th></tr>"
+                + "<tr><td>"+reservation.getId()+"</td><td>"+reservation.getReserved_cabin_id().getCabin_name()+"</td>1234 Elm St, Seattle, WA - 98101<td></td><td>"+reservation.getCheck_in()+"-"+reservation.getCheck_out()+"</td><td>$"+reservation.getReserved_cabin_id().getPrice()+"</td></tr>"
                 + "</table>"
                 + "</body></html>";
     }
     
 }
+
+
+
+
+//<<<<<<< HEAD
+//+ "<tr><th>Reservation number</th><th>Cabin Type</th><th>Guest Information</th><th>Dates Booked</th><th>Amount paid</th></tr>"
+//+ "<tr><td>"+reservation.getId()+"</td><td>"+reservation.getReserved_cabin_id().getCabin_name()+"</td><td>"+reservation.getGuest_id().getEmail() 
+//+ ", "
+//+ reservation.getGuest_id().getPhone()
+//+", "+reservation.getReserved_cabin_id()+"</td><td>"+reservation.getCheck_in()+"-"+reservation.getCheck_out()+"</td><td>$"+reservation.getReserved_cabin_id().getPrice()+"</td></tr>"
+//=======

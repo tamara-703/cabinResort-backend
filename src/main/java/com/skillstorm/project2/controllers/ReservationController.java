@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skillstorm.project2.models.Reservation;
 import com.skillstorm.project2.services.ReservationService;
 
-/* 
+/** 
  * USER'S RESERVATIONS
  * This Controller can only be accessed when a user is logged into their account
  * */
@@ -42,7 +42,10 @@ public class ReservationController {
 		this.rsvpService = rsvpService;
 	}
 	
-	//get reservation by id
+	
+	/**
+	 * Returns the Reservation details based on the reservation number
+	 * */
 	@GetMapping("/reservation/{rsvpId}")
 	public Reservation getReservationById(@PathVariable long rsvpId)
 	{
@@ -50,7 +53,9 @@ public class ReservationController {
 	}
 	
 	
-	//get all reservations made by a single user
+	/**
+	 * Returns all the reservations made by a particular guest 
+	 * */
 	@GetMapping("/{userName}")
 	public List<Reservation> getAllReservationsByUserName(@PathVariable String userName)
 	{
@@ -58,7 +63,9 @@ public class ReservationController {
 	}
 
 	
-	//create a new reservation
+	/**
+	 * Creates a new reservation and persists the information in the DB
+	 * */
 	@PostMapping
 	@ResponseStatus(code=HttpStatus.CREATED)
 	public void createNewReservation(@RequestBody Reservation reservation)
@@ -68,7 +75,9 @@ public class ReservationController {
 		logger.debug("Reservation", reservation);
 	}
 
-	//edit reservation by id
+	/**
+	 * updates the existing reservation details in the DB
+	 * */
 	@PutMapping("/{id}")
 	public Reservation editReservation(@PathVariable long id, @RequestBody Reservation reservation)
 	{
@@ -78,7 +87,9 @@ public class ReservationController {
 		
 	}
 	
-	//delete reservation by its id
+	/**
+	 * Deletes an existing reservation based on the reservation number
+	 * */
 	@DeleteMapping("/{rsvpId}")
 	public void deleteReservation(@PathVariable long rsvpId)
 	{

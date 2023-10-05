@@ -9,23 +9,11 @@ public class ConcreteGrantedAuthority implements GrantedAuthority {
 
    private String authority;
 
-
-
-
-
-
-
    public ConcreteGrantedAuthority(String authority) {
 
        this.authority = authority;
 
    }
-
-
-
-
-
-
 
    @Override
 
