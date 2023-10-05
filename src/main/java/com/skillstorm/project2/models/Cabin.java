@@ -25,6 +25,9 @@ public class Cabin {
 	@Column(name="cabin_name")
 	private String cabinName;
 	
+	@Column(name="cabin_name_ar")
+	private String cabinNameAr;
+	
 	@Column(name="no_rooms")
 	private int noRooms;
 	
@@ -39,6 +42,9 @@ public class Cabin {
 	
 	@Column(name="description")
 	private String description;
+	
+	@Column(name="desc_ar")
+	private String descAr;
 	
 	@Column(name="capacity")
 	private int capacity;
@@ -61,7 +67,7 @@ public class Cabin {
 	public Cabin() {}
 
 	public Cabin(long id, String cabin_name, int no_rooms, int no_bathrooms, int sleeps, double price,
-			String description, int capacity, Amenity amenities_id, Image image_id, CabinLocations cabinloc) {
+			String description, int capacity, Amenity amenities_id, Image image_id, CabinLocations cabinloc, String cabinNameAr, String descAr) {
 		super();
 		this.id = id;
 		this.cabinName = cabin_name;
@@ -74,9 +80,28 @@ public class Cabin {
 		this.amenitiesId = amenities_id;
 		this.imageId = image_id;
 		this.cabinloc = cabinloc;
+		this.cabinNameAr = cabinNameAr;
+		this.descAr = descAr;
+		
 	}
 
 	
+	public String getCabinNameAr() {
+		return cabinNameAr;
+	}
+
+	public void setCabinNameAr(String cabinNameAr) {
+		this.cabinNameAr = cabinNameAr;
+	}
+
+	public String getDescAr() {
+		return descAr;
+	}
+
+	public void setDescAr(String descAr) {
+		this.descAr = descAr;
+	}
+
 	public CabinLocations getCabinloc() {
 		return cabinloc;
 	}

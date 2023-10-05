@@ -24,6 +24,17 @@ public class CabinLocations {
 	@Column(name = "city")
 	private String city;
 	
+	@Column(name = "city_ar")
+	private String cityAr;
+	
+	public String getCityAr() {
+		return cityAr;
+	}
+
+	public void setCityAr(String cityAr) {
+		this.cityAr = cityAr;
+	}
+
 	@Column(name = "zip")
 	private String zip;
 	
@@ -33,13 +44,13 @@ public class CabinLocations {
 	
 	public CabinLocations() {}
 
-	public CabinLocations(String stateId, String address, String city, String zip) {
+	public CabinLocations(String stateId, String address, String city, String zip, String cityAr) {
 		super();
 		this.stateId = stateId;
 		this.address = address;
 		this.city = city;
 		this.zip = zip;
-//		this.cabins = cabins;
+		this.cityAr = cityAr;
 	}
 
 	public String getStateId() {
