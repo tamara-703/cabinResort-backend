@@ -57,8 +57,8 @@ public class ReservationController {
 			@ApiResponse(responseCode="200",
 						 description ="Reservation with id Found",
 						 content = {@Content(mediaType="application/json")}),
-			@ApiResponse(responseCode="404",
-			 description ="Reservation with id not Found",
+			@ApiResponse(responseCode="401",
+			 description ="Unauthorized to retreive reservation",
 			 content = @Content)
 	})
 	@GetMapping("/reservation/{rsvpId}")
@@ -76,8 +76,8 @@ public class ReservationController {
 			@ApiResponse(responseCode="200",
 						 description ="Reservations from username Found",
 						 content = {@Content(mediaType="application/json")}),
-			@ApiResponse(responseCode="404",
-			 description ="No reservation found for username",
+			@ApiResponse(responseCode="401",
+			 description ="Unauthorized to retreive reservation",
 			 content = @Content)
 	})
 	@GetMapping("/{userName}")
@@ -90,6 +90,7 @@ public class ReservationController {
 	/**
 	 * Creates a new reservation and persists the information in the DB
 	 * */
+	@Operation(summary = "Creates a new reservation")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode="200",
 						 description ="Creates a reservation",
@@ -110,6 +111,7 @@ public class ReservationController {
 	/**
 	 * updates the existing reservation details in the DB
 	 * */
+	@Operation(summary = "Updates reservation for reservaion with id")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode="200",
 						 description ="Creates a reservation for user by id",
@@ -143,8 +145,8 @@ public class ReservationController {
 			@ApiResponse(responseCode="200",
 						 description ="Deletes reservation with given id",
 						 content = {@Content(mediaType="application/json")}),
-			@ApiResponse(responseCode="404",
-			 description ="No reservation with given id found",
+			@ApiResponse(responseCode="401",
+			 description ="User not logged in to delete reservation",
 			 content = @Content)
 	})
 	@DeleteMapping("/{rsvpId}")

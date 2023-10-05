@@ -56,6 +56,16 @@ public class UserController {
 	 * 
 	 * get the Principal (all metadata of the user object)
 	 * */
+	@Operation(summary = "Gets user with principal object after log in")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode="200",
+						 description ="User with principal object was retreived",
+						 content = {@Content(mediaType="application/json")}),
+			@ApiResponse(responseCode="500",
+			 description ="Server issue",
+			 content = @Content)
+	})
+	@SecurityRequirement(name = "basic Auth", scopes = "read")
 	@GetMapping
 	public Principal getPrincipal(Principal principal)
 	{
@@ -71,8 +81,8 @@ public class UserController {
 			@ApiResponse(responseCode="200",
 						 description ="User was logged in and retreived",
 						 content = {@Content(mediaType="application/json")}),
-			@ApiResponse(responseCode="404",
-			 description ="No user found",
+			@ApiResponse(responseCode="401",
+			 description ="Invalid log in credentials",
 			 content = @Content)
 	})
 	@SecurityRequirement(name = "basic Auth", scopes = "read")
@@ -111,8 +121,8 @@ public class UserController {
 			@ApiResponse(responseCode="200",
 						 description ="Updated user with given id",
 						 content = {@Content(mediaType="application/json")}),
-			@ApiResponse(responseCode="404",
-			 description ="No user with given id found",
+			@ApiResponse(responseCode="401",
+			 description ="User must be logged in to update account",
 			 content = @Content)
 	})
 	@PutMapping("/profile/{id}")

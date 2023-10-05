@@ -49,15 +49,6 @@ public class HomepageController {
 		this.userService = userService;
 	}
 	
-	//Test mapping, 
-	//delete later
-	@GetMapping("/test")
-	public String sayHello()
-	{
-		//test return
-		return "<h1>Hello from AWS!</h1>";
-	}
-
 	/**
 	 * Returns all the list of cabins of a the selected State
 	 * */
@@ -85,6 +76,9 @@ public class HomepageController {
 			@ApiResponse(responseCode="200",
 						 description ="Got cabin id",
 						 content = {@Content(mediaType="application/json")}),
+			@ApiResponse(responseCode="401",
+			 description ="User must be signed in to get cabin by id",
+			 content = @Content),
 			@ApiResponse(responseCode="404",
 			 description ="No Cabin found for that id",
 			 content = @Content)
@@ -117,6 +111,15 @@ public class HomepageController {
 	 * Saves the newly created user information to the DB
 	 * */
 	//user signup
+	@Operation(summary = "Gets a new user")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode="200",
+						 description ="New User Created",
+						 content = {@Content(mediaType="application/json")}),
+			@ApiResponse(responseCode="404",
+			 description ="No User found with that username",
+			 content = @Content)
+	})
 	@PostMapping("/signup")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public void registerUser(@RequestBody GuestInformation newUser) throws UserAlreadyExistsException
