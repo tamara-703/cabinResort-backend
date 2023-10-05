@@ -48,8 +48,7 @@ class HomepageControllerTest {
 	public void setUp() throws Exception {
 		 MockitoAnnotations.openMocks(this);
 
-			mockmvc = MockMvcBuilders.webAppContextSetup(context).apply(springSecurity()) // Apply Spring Security
-																							// configuration
+			mockmvc = MockMvcBuilders.webAppContextSetup(context).apply(springSecurity())
 					.build();
 		
 	}
