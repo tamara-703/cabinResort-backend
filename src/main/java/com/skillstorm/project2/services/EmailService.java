@@ -61,7 +61,7 @@ public class EmailService {
                 + "<h4>Please find below the details.</h4>"
                 + "<table border='1'>"
                 + "<tr><th>Reservation number</th><th>Cabin Type</th><th>Cabin Location</th><th>Dates Booked</th><th>Amount paid</th></tr>"
-                + "<tr><td>"+reservation.getId()+"</td><td>"+reservation.getReserved_cabin_id().getCabin_name()+"</td><td></td><td>"+reservation.getCheck_in()+"-"+reservation.getCheck_out()+"</td><td>$"+reservation.getReserved_cabin_id().getPrice()+"</td></tr>"
+                + "<tr><td>"+reservation.getId()+"</td><td>"+reservation.getReserved_cabin_id().getCabin_name()+"</td>1234 Elm St, Seattle, WA - 98101<td></td><td>"+reservation.getCheck_in()+"-"+reservation.getCheck_out()+"</td><td>$"+reservation.getReserved_cabin_id().getPrice()+"</td></tr>"
                 + "</table>"
                 + "</body></html>";
     }
