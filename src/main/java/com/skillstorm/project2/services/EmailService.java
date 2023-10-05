@@ -46,15 +46,7 @@ public class EmailService {
     private String getEmailContent(Reservation reservation) {
         	
         return "<html>"
-        		+ " <style>"
-        		+ "body{"
-        		+ 	"opacity: 0.5;"
-        		+ 	"background-image: url(\"https://img.sunset02.com/sites/default/files/styles/4_3_horizontal_inbody_900x506/public/image/2016/06/main/"
-        		        		+ "best-cabins-in-the-west-classic-pioneer-guest-cabins-crested-butte-co-front-1113.jpg\"); "
-        		+ 	"background-repeat: no-repeat; "
-        		+ 	"background-size: cover;"
-        		+ "}"
-        		+ "</style>"
+        		
         		+ "<body >"
                 + "<h1>Hello, " + reservation.getGuest_id().getFirst_name() + "!</h1>"
                 + "<h3>We are glad to inform that your cabin reservation with Cabin Fever Resorts has been confirmed!!</h3>"
