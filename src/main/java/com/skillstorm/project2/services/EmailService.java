@@ -61,10 +61,7 @@ public class EmailService {
                 + "<h4>Please find below the details.</h4>"
                 + "<table border='1'>"
                 + "<tr><th>Reservation number</th><th>Cabin Type</th><th>Cabin Location</th><th>Dates Booked</th><th>Amount paid</th></tr>"
-                + "<tr><td>"+reservation.getId()+"</td><td>"+reservation.getReserved_cabin_id().getCabin_name()+"</td><td>"+reservation.getReserved_cabin_id().getCabinloc().getAddress() 
-				+ ", "
-				+ reservation.getReserved_cabin_id().getCabinloc().getCity()
-		  +", "+reservation.getReserved_cabin_id().getCabinloc().getStateId()+"</td><td>"+reservation.getCheck_in()+"-"+reservation.getCheck_out()+"</td><td>$"+reservation.getReserved_cabin_id().getPrice()+"</td></tr>"
+                + "<tr><td>"+reservation.getId()+"</td><td>"+reservation.getReserved_cabin_id().getCabin_name()+"</td><td></td><td>"+reservation.getCheck_in()+"-"+reservation.getCheck_out()+"</td><td>$"+reservation.getReserved_cabin_id().getPrice()+"</td></tr>"
                 + "</table>"
                 + "</body></html>";
     }
