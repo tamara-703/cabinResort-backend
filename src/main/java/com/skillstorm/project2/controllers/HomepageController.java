@@ -30,8 +30,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
  */
 
 
-//@CrossOrigin(origins = "http://localhost:4200/", allowedHeaders= "*")
-
 
 /**
  * This endpoint returns the homepage of the Cabin Resorts website

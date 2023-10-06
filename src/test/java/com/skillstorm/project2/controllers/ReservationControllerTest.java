@@ -1,6 +1,5 @@
 package com.skillstorm.project2.controllers;
 
-//import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -21,9 +20,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -54,6 +51,8 @@ class ReservationControllerTest {
 	@InjectMocks
     private ReservationController reservationController;
 	
+	Cabin cabin1;
+	GuestInformation gi1;
 	Reservation r1;
 	Reservation r2;
 	List<Reservation> rList = new ArrayList<>();
@@ -73,18 +72,17 @@ class ReservationControllerTest {
 		Image img = new Image(1,
 				"https://www.visitmysmokies.com/wp-content/uploads/2019/01/Altitude-Adjustment.jpeg,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmIBQ8LXpCMJ9U0ycO4PegttqhmLKv7RlLJA&usqp=CAU,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs29OC0EovPsg5Lfj_9TJxlkFr9rxCffBDMA&usqp=CAU,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5NxUbdpmcYojjPaZKBVbQpi_Hm5yf0WKngw&usqp=CAU,https://images.squarespace-cdn.com/content/v1/606c6e8431a9a703623d772e/1678673333195-X84F6D3230U8BD10247W/Magical+Mountain+Resorts+Caretaker%27s+Cabin+Bathroom.JPG");
 
-		//CabinLocations cabinLoc = new CabinLocations(null, null, null, null, null);
-
-//		Cabin cabin1 = new Cabin(5, "Willow Wind Lodge", 6, 4, 21, 269.99, "family - mega size", 10, amenities1, img,
-//				cabinLoc);
-
-		GuestInformation gi1 = new GuestInformation(6, "Vasantala", "Phani is awesome", "pvasantala", "secret567",
+		CabinLocations cabinLoc = new CabinLocations("WA", "1234 Elm St", "Seattle", "98101", "Seattle-Ar");
+		
+		cabin1 = new Cabin(5, "Willow Wind Lodge", 6, 4, 21, 269.99, "family - mega size", 10, amenities1, img, cabinLoc, "Willow Wind Lodge-Ar", "family - mega size-Ar");
+	
+		gi1 = new GuestInformation(6, "Vasantala", "Phani is awesome", "pvasantala", "secret567",
 				"pvasantala@skillstorm.com", "56546465", "1234 main street UPDATED5", "English", "ROLE_USER");
 
 		GuestInformation gi2 = new GuestInformation(2, "RossR", "Mike", "mross", "secret", "randomuser23@gmail.com",
 				"1234512345", "789 Oak St", "English", "ROLE_USER");
 
-		//r1 = new Reservation(15, "Wed Sep 06 2023", "Fri Oct 06 2023", cabin1, gi1);
+		r1 = new Reservation(15, "Wed Sep 06 2023", "Fri Oct 06 2023", cabin1, gi1);
 																					
 
 		r2 = new Reservation();
@@ -132,15 +130,16 @@ class ReservationControllerTest {
 	@Test
     void testEditReservation_accepted() {
         long reservationId = 1L;
-        Reservation reservation = new Reservation(); // Create a valid reservation object
+        Reservation reservation = new Reservation(15, "Wed Sep 06 2023", "Fri Oct 06 2023", cabin1, gi1); // Create a valid reservation object
 
+       
         // Mock the service method to return true (accepted)
         when(rsvpService.editReservation(reservation, reservationId)).thenReturn(reservation);
 
-        Reservation responseEntity = reservationController.editReservation(reservationId, reservation);
+        Reservation reservationEdited = reservationController.editReservation(reservationId, reservation);
 
         // Verify the response status and body
-//        assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());
+        assertEquals(reservation, reservationEdited);
     }
     
 
